@@ -1,62 +1,126 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="assets/logo.png" alt="logo" width="120" height="120"/>
 </p>
 
-## About Laravel
+<h1 align="center">Website-Citegu</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  <b>Website yang baru di buat</b>
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📸 Screenshots
 
-## Learning Laravel
+### Home
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<p align="center">
+  <img src="assets/home.png" alt="website home" width="700"/>
+</p>
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## ⚙️ Getting Started
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Persyaratan Sistem
 
-## Laravel Sponsors
+Pastikan Anda memiliki hal-hal berikut terinstal di sistem Anda:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+* **PHP** (disarankan versi 8.x atau lebih tinggi)
+* **Composer** (Pengelola dependensi PHP)
+* **MySQL** (atau database lain yang didukung Laravel)
+* **Node.js & NPM/Yarn** (untuk kompilasi aset frontend)
+* **Web Server** (Apache atau Nginx, atau menggunakan `php artisan serve`)
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Panduan Instalasi
 
-## Contributing
+Ikuti langkah-langkah di bawah ini untuk menjalankan proyek secara lokal:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1.  **Clone Repositori:**
+    ```bash
+    git clone [https://github.com/NamaUserAnda/NamaRepoAnda.git](https://github.com/NamaUserAnda/NamaRepoAnda.git)
+    cd NamaRepoAnda
+    ```
 
-## Code of Conduct
+2.  **Instal Dependensi Composer:**
+    ```bash
+    composer install
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3.  **Salin File `.env`:**
+    ```bash
+    cp .env.example .env
+    ```
+    Kemudian, buka file `.env` yang baru disalin dan sesuaikan konfigurasi database dan email (lihat bagian **Konfigurasi Lingkungan**).
 
-## Security Vulnerabilities
+4.  **Buat Kunci Aplikasi:**
+    ```bash
+    php artisan key:generate
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5.  **Konfigurasi Database:**
+    Buka `phpMyAdmin` atau klien database Anda, buat database baru (misalnya `db_citegu` sesuai `.env` Anda).
+    Jalankan migrasi database:
+    ```bash
+    php artisan migrate
+    ```
+    Jika Anda memiliki seeder, jalankan juga:
+    ```bash
+    php artisan db:seed
+    ```
 
-## License
+6.  **Instal Dependensi NPM dan Kompilasi Aset Frontend:**
+    ```bash
+    npm install
+    npm run dev # Untuk pengembangan
+    # atau
+    npm run build # Untuk produksi
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# citegu
+7.  **Jalankan Server Lokal:**
+    ```bash
+    php artisan serve
+    ```
+    Aplikasi akan tersedia di `http://127.0.0.1:8000` (atau port lain yang ditunjukkan).
+
+---
+
+## Konfigurasi Lingkungan (`.env`)
+
+Setelah menyalin `.env.example` ke `.env`, Anda **wajib** mengedit file `.env` untuk menyesuaikan detail berikut:
+
+* **Database:**
+    ```dotenv
+    DB_DATABASE=db_citegu
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+    Sesuaikan dengan kredensial database lokal Anda.
+
+* **Pengaturan Email (Untuk Formulir Kontak):**
+    ```dotenv
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.mailtrap.io # Atau penyedia SMTP Anda (misal: smtp.gmail.com)
+    MAIL_PORT=2525      # Sesuaikan dengan port SMTP Anda
+    MAIL_USERNAME=null  # Sesuaikan dengan username SMTP Anda
+    MAIL_PASSWORD=null  # Sesuaikan dengan password SMTP Anda
+    MAIL_ENCRYPTION=tls # Sesuaikan (tls, ssl, atau null)
+    MAIL_FROM_ADDRESS="no-reply@yourdomain.com" # Alamat pengirim email default
+    ```
+    **Sangat disarankan** menggunakan Mailtrap.io untuk pengujian email di lingkungan pengembangan. Ganti `MAIL_FROM_ADDRESS` dengan alamat email yang valid dan akan digunakan sebagai pengirim pesan.
+
+---
+
+## Kontak
+
+Jika Anda memiliki pertanyaan atau saran, jangan ragu untuk menghubungi:
+
+* **Nama Anda / Perusahaan Anda**
+* Email: youremail@example.com
+* Website: yourwebsite.com
+
+---
+<p align="center"><img src="assets/logo.png" alt="citegu Logo" width="80"/> <br> <b>Built with Laravel, and etc</b> </p>
+
+
