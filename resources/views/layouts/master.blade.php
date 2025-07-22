@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>PT CITEGU - Cipta Teknologi Gurita</title>
+  {{-- PERBAIKAN DI SINI: Membuat judul lebih dinamis --}}
+  <title>PT. CIPTA TEKNOLOGI GURITA @hasSection('title') - @yield('title') @endif</title>
   <meta name="description" content="Menyediakan solusi IT dan dapat disesuaikan untuk kebutuhan bisnis Anda.">
   <meta name="keywords" content="IT solutions, data center, networking, server, storage, immersion cooling, HPC, AI/ML, security, software development">
 
@@ -22,6 +23,9 @@
   <link href="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
   <link href="{{ asset('landing/assets/css/main.css') }}" rel="stylesheet">
+
+  {{-- Tambahkan yield untuk gaya tambahan dari halaman spesifik --}}
+  @yield('styles')
 
 </head>
 
@@ -47,6 +51,9 @@
   <script src="{{ asset('landing/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
   <script src="{{ asset('landing/assets/js/main.js') }}"></script>
+
+  {{-- Tambahkan yield untuk skrip tambahan dari halaman spesifik --}}
+  @yield('scripts')
 
 </body>
 

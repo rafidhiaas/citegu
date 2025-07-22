@@ -20,7 +20,7 @@
           <ul>
             <li><a href="#hero">Home</a></li>
             <li><a href="#about">About us</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="{{ url('/services') }}">Services</a></li>
             <li><a href="#Terms of service">Terms of service</a></li>
             <li><a href="#">Privacy policy</a></li>
           </ul>
@@ -29,11 +29,11 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="#">Data Center</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            <li><a href="#contact">Data Center</a></li>
+            <li><a href="#contact">Web Development</a></li>
+            <li><a href="#contact">Product Management</a></li>
+            <li><a href="#contact">Marketing</a></li>
+            <li><a href="#contact">Graphic Design</a></li>
           </ul>
         </div>
 
@@ -43,9 +43,9 @@
           <p>Jl. HR Rasuna Said Kav5 BlokX/7 Karet kuningan, Kec. Setiabudi Jakarta 12910</p>
           <p>Indonesia ID</p>
           <p class="mt-4"><strong>Phone:</strong> 
-          <span>+62 000 000 000 00</span></p>
+          <span>+62 7777 1651 90</span></p>
           <p><strong>Email:</strong> 
-          <span>info@citegu.com</span></p>
+          <span>sales@citegu.com</span></p>
         </div>
 
       </div>

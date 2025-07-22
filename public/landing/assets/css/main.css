@@ -12,33 +12,32 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
+  --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Poppins", sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #36343a; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #009970; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+:root {
+  --background-color: #ffffff;
+  --default-color: #444444;
+  --heading-color: #36343a;
+  --accent-color: #009970; /* Warna hijau tema utama */
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #444444;  /* The default color of the main navmenu links */
-  --nav-hover-color: #009970; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #444444; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #009970; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #444444;
+  --nav-hover-color: #009970;
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #444444;
+  --nav-dropdown-hover-color: #009970;
 }
 
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
-
+/* Color Presets */
 .light-background {
   --background-color: #f9f9f9;
   --surface-color: #ffffff;
@@ -50,6 +49,10 @@
   --heading-color: #ffffff;
   --surface-color: #252525;
   --contrast-color: #ffffff;
+  --nav-color: #eeeeee;
+  --nav-mobile-background-color: #333333;
+  --nav-dropdown-background-color: #333333;
+  --nav-dropdown-color: #eeeeee;
 }
 
 .accent-background {
@@ -95,8 +98,7 @@ h6 {
   font-family: var(--heading-font);
 }
 
-/* Pulsating Play Button
-------------------------------*/
+/* Pulsating Play Button */
 .pulsating-play-btn {
   width: 94px;
   height: 94px;
@@ -122,7 +124,7 @@ h6 {
   border: 5px solid color-mix(in srgb, var(--accent-color), transparent 30%);
   top: -15%;
   left: -15%;
-  background: rgba(198, 16, 0, 0);
+  background: rgba(0, 0, 0, 0);
 }
 
 .pulsating-play-btn:after {
@@ -135,7 +137,7 @@ h6 {
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-left: 15px solid #fff;
+  border-left: 15px solid var(--contrast-color);
   z-index: 100;
   transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
@@ -151,7 +153,7 @@ h6 {
   border: none;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-left: 15px solid #fff;
+  border-left: 15px solid var(--contrast-color);
   z-index: 200;
   animation: none;
   border-radius: 0;
@@ -174,8 +176,7 @@ h6 {
   }
 }
 
-/* PHP Email Form Messages
-------------------------------*/
+/* PHP Email Form Messages (digunakan oleh Bethany, pastikan konsisten dengan alerts kustom) */
 .php-email-form .error-message {
   display: none;
   background: #df1529;
@@ -235,6 +236,14 @@ h6 {
   padding: 20px 0;
   transition: all 0.5s;
   z-index: 997;
+  
+}
+
+.dark .header {
+  --background-color: #060606;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  box-shadow: 0px 0 18px rgba(255, 255, 255, 0.1) !important;
 }
 
 .header .header-container {
@@ -433,6 +442,10 @@ h6 {
     transition: color 0.3s;
   }
 
+  .dark .mobile-nav-toggle {
+    color: var(--contrast-color);
+  }
+
   .navmenu {
     padding: 0;
     z-index: 9997;
@@ -452,6 +465,11 @@ h6 {
     z-index: 9998;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
   }
+
+  .dark .navmenu ul {
+    box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.1);
+  }
+
 
   .navmenu a,
   .navmenu a:focus {
@@ -517,9 +535,17 @@ h6 {
     background-color: rgba(33, 37, 41, 0.1);
   }
 
+  .dark .navmenu .dropdown ul ul {
+      background-color: rgba(255, 255, 255, 0.05);
+  }
+
   .navmenu .dropdown>.dropdown-active {
     display: block;
     background-color: rgba(33, 37, 41, 0.03);
+  }
+
+  .dark .navmenu .dropdown>.dropdown-active {
+      background-color: rgba(255, 255, 255, 0.01);
   }
 
   .mobile-nav-active {
@@ -558,6 +584,12 @@ h6 {
   font-size: 14px;
   padding-bottom: 50px;
   position: relative;
+}
+
+.dark .footer {
+  --default-color: #eeeeee;
+  --background-color: #0d0d0d;
+  --heading-color: #ffffff;
 }
 
 .footer .footer-top {
@@ -659,6 +691,12 @@ h6 {
   background-color: color-mix(in srgb, var(--default-color), transparent 95%);
 }
 
+.dark .footer .copyright {
+  background-color: color-mix(in srgb, var(--background-color), transparent 80%);
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+
 .footer .copyright p {
   margin-bottom: 0;
 }
@@ -692,6 +730,15 @@ h6 {
   height: 60px;
   animation: animate-preloader 1.5s linear infinite;
 }
+
+.dark #preloader {
+  background: var(--background-color);
+}
+
+.dark #preloader:before {
+    border-color: var(--accent-color) transparent var(--accent-color) transparent;
+}
+
 
 @keyframes animate-preloader {
   0% {
@@ -756,6 +803,12 @@ h6 {
   position: relative;
 }
 
+.dark .page-title {
+  --default-color: #ffffff;
+  --background-color: #0d0d0d;
+  --heading-color: #ffffff;
+}
+
 .page-title h1 {
   font-size: 42px;
   font-weight: 700;
@@ -795,30 +848,17 @@ section,
   scroll-margin-top: 65px;
   overflow: clip;
 }
-.section-title {
 
-    text-align: left; /* Menggeser teks ke kiri */
-    margin-bottom: 30px; /* Memberi jarak antara judul dan logo */
-    font-size: 2.5em; /* Ukuran font yang lebih besar */
-    color: #333; /* Warna teks gelap */
-    font-weight: bold; /* Menebalkan teks */
-    padding-left: 15px; /* Memberi sedikit padding dari tepi kiri container, sesuaikan */
-
+.dark section,
+.dark .section {
+    color: var(--default-color);
+    background-color: var(--background-color);
 }
 
-@media (max-width: 1199px) {
-
-  section,
-  .section {
-    scroll-margin-top: 53px;
-  }
-}
-
-/*--------------------------------------------------------------
-# Global Section Titles
---------------------------------------------------------------*/
 .section-title {
-  padding-top: 50px; /* Tambahkan baris ini, atau sesuaikan nilai */
+  text-align: center;
+  margin-bottom: 30px;
+  padding-top: 0;
   padding-bottom: 60px;
   position: relative;
 }
@@ -829,6 +869,7 @@ section,
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
+  color: var(--heading-color);
 }
 
 .section-title h2:after {
@@ -841,10 +882,29 @@ section,
   left: 0;
   right: 0;
   bottom: 0;
+  margin: auto;
 }
 
 .section-title p {
   margin-bottom: 20px;
+  color: var(--default-color);
+}
+
+.section-title.align-left {
+    text-align: left;
+    padding-left: 15px;
+}
+.section-title.align-left h2:after {
+    left: 15px;
+    right: auto;
+    margin: 0;
+}
+
+@media (max-width: 1199px) {
+  section,
+  .section {
+    scroll-margin-top: 53px;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -858,6 +918,7 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .hero img {
@@ -870,26 +931,18 @@ section,
   z-index: 1;
 }
 
-.hero {
-  /* Atur gambar latar belakang dan buat agar menutupi seluruh elemen */
-  /*background-image: url('jalur/ke/gambar-anda.jpg'); /* Ganti dengan jalur sebenarnya ke gambar Anda */
-  background-size: cover; /* Ini membuat gambar menutupi seluruh area */
-  background-position: center center; /* Posisikan gambar di tengah */
-  background-repeat: no-repeat; /* Mencegah gambar berulang */
-  position: relative; /* Penting untuk penentuan posisi pseudo-elemen ::before */
-  width: 100vw; /* Buat selebar viewport penuh */
-  height: 100vh; /* Buat setinggi viewport penuh */
-  overflow: hidden; /* Sembunyikan bagian yang meluap jika gambar sedikit lebih besar */
-}
-
 .hero:before {
   content: "";
-  /* Terapkan campuran warna latar belakang */
   background: color-mix(in srgb, var(--background-color), transparent 30%);
-  position: absolute; /* Posisikan relatif terhadap induk .hero */
-  inset: 0; /* Singkatan untuk top: 0; right: 0; bottom: 0; left: 0; */
-  z-index: 2; /* Pastikan ia berada di atas gambar latar belakang tetapi berpotensi di bawah konten */
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 }
+
+.dark .hero:before {
+  background: color-mix(in srgb, var(--background-color), transparent 30%);
+}
+
 .hero .container {
   position: relative;
   z-index: 3;
@@ -940,7 +993,7 @@ section,
 # Clients Section
 --------------------------------------------------------------*/
 .clients {
-  padding: 10px 0;
+  padding: 150px 0 60px 0;
 }
 
 .clients .client-logo {
@@ -963,10 +1016,22 @@ section,
   opacity: 1;
 }
 
+@media (max-width: 1200px) {
+  .clients {
+    padding-top: 120px;
+  }
+}
+
 @media (max-width: 640px) {
   .clients .client-logo img {
     padding: 20px;
   }
+}
+
+.clients.section .section-title {
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: 30px;
 }
 
 /*--------------------------------------------------------------
@@ -1014,7 +1079,22 @@ section,
   left: calc(50% - 47px);
   top: calc(50% - 47px);
 }
+.contact-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
 
+.contact-button:hover {
+    background-color: color-mix(in srgb, var(--accent-color), transparent 25%);
+}
 /*--------------------------------------------------------------
 # Stats Section
 --------------------------------------------------------------*/
@@ -1094,7 +1174,6 @@ section,
   color: var(--accent-color);
   margin-bottom: 30px;
   font-size: 32px;
-  margin-bottom: 30px;
   background: color-mix(in srgb, var(--accent-color), transparent 95%);
   border-radius: 50px;
   display: flex;
@@ -1141,6 +1220,10 @@ section,
   z-index: 1;
 }
 
+.dark .call-to-action img {
+}
+
+
 .call-to-action:before {
   content: "";
   background: color-mix(in srgb, var(--background-color), transparent 50%);
@@ -1148,6 +1231,11 @@ section,
   inset: 0;
   z-index: 2;
 }
+
+.dark .call-to-action:before {
+  background: color-mix(in srgb, var(--background-color), transparent 30%);
+}
+
 
 .call-to-action .container {
   position: relative;
@@ -1196,6 +1284,12 @@ section,
   height: 100%;
 }
 
+.dark .services .service-item {
+  box-shadow: 0px 5px 90px 0px rgba(255, 255, 255, 0.05);
+  border-bottom: 5px solid var(--surface-color);
+}
+
+
 .services .service-item .icon {
   color: var(--contrast-color);
   background: var(--accent-color);
@@ -1243,7 +1337,7 @@ section,
   margin: 30px auto;
   list-style: none;
   text-align: center;
-  margin-top: 30px; /* Tambahkan baris ini */
+  margin-top: 30px;
 }
 
 .portfolio .portfolio-filters li {
@@ -1284,6 +1378,11 @@ section,
   overflow: hidden;
 }
 
+.dark .portfolio .portfolio-content {
+  box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.05);
+}
+
+
 .portfolio .portfolio-content img {
   transition: 0.3s;
   position: relative;
@@ -1297,6 +1396,11 @@ section,
   position: relative;
   z-index: 2;
 }
+
+.dark .portfolio .portfolio-content .portfolio-info {
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
 
 .portfolio .portfolio-content .portfolio-info h4 {
   font-size: 18px;
@@ -1417,6 +1521,11 @@ section,
   overflow: hidden;
 }
 
+.dark .team .member {
+  box-shadow: 0px 2px 25px rgba(255, 255, 255, 0.08);
+}
+
+
 .team .member img {
   border-radius: 15px;
   overflow: hidden;
@@ -1479,6 +1588,11 @@ section,
   padding: 30px;
 }
 
+.dark .contact .info-wrap {
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.08);
+}
+
+
 @media (max-width: 575px) {
   .contact .info-wrap {
     padding: 20px;
@@ -1528,6 +1642,11 @@ section,
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
+.dark .contact .php-email-form {
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.08);
+}
+
+
 @media (max-width: 575px) {
   .contact .php-email-form {
     padding: 20px;
@@ -1563,145 +1682,4 @@ section,
   background: var(--accent-color);
   border: 0;
   padding: 10px 30px;
-  transition: 0.4s;
-  border-radius: 50px;
-}
-
-.contact .php-email-form button[type=submit]:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 25%);
-}
-
-/*--------------------------------------------------------------
-# Portfolio Details Section
---------------------------------------------------------------*/
-.portfolio-details .portfolio-details-slider img {
-  width: 100%;
-}
-
-.portfolio-details .portfolio-details-slider .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: color-mix(in srgb, var(--default-color), transparent 85%);
-  opacity: 1;
-}
-
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--accent-color);
-}
-
-.portfolio-details .portfolio-info {
-  background-color: var(--surface-color);
-  padding: 30px;
-  box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
-}
-
-.portfolio-details .portfolio-info h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
-}
-
-.portfolio-details .portfolio-info ul {
-  list-style: none;
-  padding: 0;
-  font-size: 15px;
-}
-
-.portfolio-details .portfolio-info ul li+li {
-  margin-top: 10px;
-}
-
-.portfolio-details .portfolio-description {
-  padding-top: 30px;
-}
-
-.portfolio-details .portfolio-description h2 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.portfolio-details .portfolio-description p {
-  padding: 0;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-}
-
-/*--------------------------------------------------------------
-# Service Details Section
---------------------------------------------------------------*/
-.service-details .services-list {
-  background-color: var(--surface-color);
-  padding: 10px 30px;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  margin-bottom: 20px;
-}
-
-.service-details .services-list a {
-  display: block;
-  line-height: 1;
-  padding: 8px 0 8px 15px;
-  border-left: 3px solid color-mix(in srgb, var(--default-color), transparent 70%);
-  margin: 20px 0;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  transition: 0.3s;
-}
-
-.service-details .services-list a.active {
-  color: var(--heading-color);
-  font-weight: 700;
-  border-color: var(--accent-color);
-}
-
-.service-details .services-list a:hover {
-  border-color: var(--accent-color);
-}
-
-.service-details .services-img {
-  margin-bottom: 20px;
-}
-
-.service-details h3 {
-  font-size: 26px;
-  font-weight: 700;
-}
-
-.service-details h4 {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.service-details p {
-  font-size: 15px;
-}
-
-.service-details ul {
-  list-style: none;
-  padding: 0;
-  font-size: 15px;
-}
-
-.service-details ul li {
-  padding: 5px 0;
-  display: flex;
-  align-items: center;
-}
-
-.service-details ul i {
-  font-size: 20px;
-  margin-right: 8px;
-  color: var(--accent-color);
-}
-
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
 }

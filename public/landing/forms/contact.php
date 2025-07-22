@@ -23,7 +23,8 @@
   $contact->from_email = $_POST['email'];
   $contact->subject = $_POST['subject'];
 
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
+  // Hapus komentar /* pada kode ini
+  // menggunakan SMTP untuk mengirim email.  perlu memasukkan kredensial SMTP yang benar
   /*
   $contact->smtp = array(
     'host' => 'example.com',
