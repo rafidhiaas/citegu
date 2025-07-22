@@ -107,6 +107,6 @@ Jika Anda memiliki pertanyaan atau saran, jangan ragu untuk menghubungi:
 * Website: yourwebsite.com
 
 ---
-<p align="center"><img src="assets/logo.png" alt="citegu Logo" width="80"/> <br> <b>Built with Laravel, and etc</b> </p>
+<p align="center"><img src="public/landing/assets/img/logo.png" alt="citegu Logo" width="80"/> <br> <b>Built with PHP, Laravel, Node.js, MYSQL, Composer, and etc</b> </p>
 
 
