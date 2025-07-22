@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="logo" width="120" height="120"/>
+  <img src="public/landing/assets/img/logo.png" alt="logo" width="120" height="120"/>
 </p>
 
 <h1 align="center">Website-Citegu</h1>
@@ -15,7 +15,7 @@
 ### Home
 
 <p align="center">
-  <img src="assets/home.png" alt="website home" width="700"/>
+  <img src="public/landing/assets/img/Home.png" alt="website home" width="700"/>
 </p>
 ---
 
