@@ -98,20 +98,6 @@ Setelah menyalin `.env.example` ke `.env`, Anda **wajib** mengedit file `.env` u
     ```
     Sesuaikan dengan kredensial database lokal Anda.
 
-* **Pengaturan Email (Untuk Formulir Kontak):**
-    ```dotenv
-    MAIL_MAILER=smtp
-    MAIL_HOST=smtp.mailtrap.io # Atau penyedia SMTP Anda (misal: smtp.gmail.com)
-    MAIL_PORT=2525      # Sesuaikan dengan port SMTP Anda
-    MAIL_USERNAME=null  # Sesuaikan dengan username SMTP Anda
-    MAIL_PASSWORD=null  # Sesuaikan dengan password SMTP Anda
-    MAIL_ENCRYPTION=tls # Sesuaikan (tls, ssl, atau null)
-    MAIL_FROM_ADDRESS="no-reply@yourdomain.com" # Alamat pengirim email default
-    ```
-    **Sangat disarankan** menggunakan Mailtrap.io untuk pengujian email di lingkungan pengembangan. Ganti `MAIL_FROM_ADDRESS` dengan alamat email yang valid dan akan digunakan sebagai pengirim pesan.
-
----
-
 ## Kontak
 
 Jika Anda memiliki pertanyaan atau saran, jangan ragu untuk menghubungi:
