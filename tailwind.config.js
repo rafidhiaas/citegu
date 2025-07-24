@@ -9,6 +9,8 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
+    darkMode: 'class', // ✅ Aktifkan dark mode berbasis class
+
     theme: {
         extend: {
             fontFamily: {

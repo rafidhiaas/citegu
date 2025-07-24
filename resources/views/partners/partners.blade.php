@@ -1,7 +1,7 @@
-@extends('layouts.master')
+@extends('layouts.master') <!-- Sesuaikan jika Anda punya layout admin yang berbeda -->
 
 @section('content')
-<main class="main">
+<main class="main max-h-screen overflow-y-auto"> {{-- Tambahkan kelas ini untuk scroll --}}
     <section id="clients" class="clients section light-background">
         <div class="container" data-aos="fade-up">
             <h2 class="section-title">Our Partners</h2>

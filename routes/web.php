@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PartnerController; // Pastikan ini diimpor dengan benar
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PublicProductController; // Import untuk halaman produk publik
+use App\Http\Controllers\Admin\ProductController; // Import untuk manajemen produk admin
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +25,12 @@ use App\Http\Controllers\PartnerController; // Pastikan ini diimpor dengan benar
 // Rute untuk halaman utama (landing page)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Rute untuk halaman produk
-Route::get('/products', function () {
-    return view('products.products');
-})->name('products.index');
+// Rute untuk halaman produk (sekarang dinamis dari database)
+Route::get('/products', [PublicProductController::class, 'index'])->name('products.index');
 
 // Rute untuk halaman partners (publik)
-Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
+// Menggunakan nama rute yang berbeda untuk menghindari konflik dengan rute admin.partners.index
+Route::get('/partners', [PartnerController::class, 'index'])->name('partners.public.index');
 
 // Rute untuk halaman services
 Route::get('/services', function () {
@@ -48,7 +49,7 @@ Route::get('/contact', function () {
 
 // Rute POST untuk menghandle pengiriman form kontak
 Route::post('/contact', function () {
-    // Logika pengiriman form kontak di sini
+    // Logika pengiriman form kontak di sini (Anda bisa memindahkan ini ke ContactController)
     return back()->with('success', 'Pesan Anda telah terkirim!');
 })->name('contact.submit');
 
@@ -59,43 +60,34 @@ Route::post('/testimonials', [TestimonialController::class, 'store'])->name('tes
 
 // --- Rute Admin (Dilindungi oleh Auth Middleware) ---
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    // Rute untuk Dashboard Admin (saat mengakses /admin)
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
     // Rute untuk Testimonial (Admin)
     Route::get('/testimonials', [TestimonialController::class, 'adminIndex'])->name('testimonials.index');
     Route::post('/testimonials/{testimonial}/approve', [TestimonialController::class, 'approve'])->name('testimonials.approve');
     Route::post('/testimonials/{testimonial}/reject', [TestimonialController::class, 'reject'])->name('testimonials.reject');
     Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
 
-    // <<<--- PERBAIKAN RUTE UNTUK MANAJEMEN PARTNERS (ADMIN) ---
-    // HAPUS Route::resource() yang konflik di sini.
-    // Kita akan mendefinisikan setiap rute secara manual untuk kontrol penuh.
+    // Rute untuk Manajemen Partners (Admin)
+    // Didefinisikan secara manual sesuai kebutuhan Anda (form create ada di index)
+    Route::get('/partners', [PartnerController::class, 'adminIndex'])->name('partners.index'); // Menampilkan daftar & form tambah
+    Route::post('/partners', [PartnerController::class, 'store'])->name('partners.store'); // Menyimpan partner baru
+    Route::get('/partners/{partner}/edit', [PartnerController::class, 'edit'])->name('partners.edit'); // Menampilkan form edit
+    Route::put('/partners/{partner}', [PartnerController::class, 'update'])->name('partners.update'); // Memperbarui partner
+    Route::delete('/partners/{partner}', [PartnerController::class, 'destroy'])->name('partners.destroy'); // Menghapus partner
 
-    // Menampilkan daftar partner di admin (URL: /admin/partners)
-    // Ini adalah rute utama untuk manajemen partner di admin
-    Route::get('/partners', [PartnerController::class, 'adminIndex'])->name('partners.index');
-
-    // **PENTING:** Hapus rute create ini jika Anda tidak lagi menggunakan view admin.partners.create terpisah
-    // dan form tambah partner sudah digabungkan ke admin.partners.index.
-    // Route::get('/partners/create', [PartnerController::class, 'create'])->name('partners.create');
-
-    // Menyimpan partner baru (ini adalah rute POST dari form tambah partner)
-    Route::post('/partners', [PartnerController::class, 'store'])->name('partners.store');
-
-    // Menampilkan formulir edit partner
-    Route::get('/partners/{partner}/edit', [PartnerController::class, 'edit'])->name('partners.edit');
-
-    // Memperbarui partner (menggunakan PUT/PATCH)
-    Route::put('/partners/{partner}', [PartnerController::class, 'update'])->name('partners.update');
-    Route::patch('/partners/{partner}', [PartnerController::class, 'update']); // Tambahan untuk PATCH
-
-    // Menghapus partner
-    Route::delete('/partners/{partner}', [PartnerController::class, 'destroy'])->name('partners.destroy');
-    // <<<--- AKHIR PERBAIKAN RUTE PARTNERS (ADMIN) ---
+    // Rute untuk Manajemen Products (Admin)
+    // Menggunakan Route::resource untuk CRUD standar
+    Route::resource('products', ProductController::class);
+    // Jika Anda juga membuat manajemen kategori produk di admin:
+    // Route::resource('product-categories', Admin\ProductCategoryController::class);
 });
 
 
 // --- Rute Default Laravel Breeze (Otentikasi & Profil) ---
 
-// Rute Dashboard setelah login
+// Rute Dashboard setelah login (ini adalah dashboard default Breeze, bisa diarahkan ke /admin jika diinginkan)
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // Rute Profil Pengguna

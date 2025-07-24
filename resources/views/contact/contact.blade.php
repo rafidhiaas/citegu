@@ -18,8 +18,7 @@
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
                                 <h3>Alamat</h3>
-                                <p>Menara Kuningan Lt. 30 Jl. HR Rasuna Said Kav5 BlokX/7 Karet kuningan, Kec. Setiabudi
-                                Jakarta 12910 – Indonesia </p>
+                                <p>Jl. HR Rasuna Said Kav5 BlokX/7 Karet kuningan, Kec. Setiabudi Jakarta 12910– Indonesia </p>
                             </div>
                         </div>
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
@@ -37,7 +36,7 @@
                             </div>
                         </div>
                         {{-- Penting: Ganti URL placeholder ini dengan URL embed Google Maps yang sebenarnya --}}
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.27315582319!2d106.8284759740523!3d-6.208151260714778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3796c9535e5%3A0x63a3c945b9b1b7b7!2sMenara%20Kuningan%2C%20Jl.%20H.R.%20Rasuna%20Said%20No.Kav.%205%2C%20RT.6%2FRW.2%2C%20Karet%20Kuningan%2C%20Kecamatan%20Setiabudi%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2012910!5e0!3m2!1sen!2sid!4v1719664500000!5m2!1sen!2sid" frameborder="0" style="border:0; width: 100%; height: 350px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4818.37617101805!2d106.82992007582112!3d-6.230502861018168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3ef1d3fffff%3A0xe89e26d40445ac5c!2sJl.%20H.%20R.%20Rasuna%20Said%20Blok%20X.5%20No.Kav%205%207%2C%20RT.1%2FRW.2%2C%20Kuningan%2C%20Kuningan%20Tim.%2C%20Kecamatan%20Setiabudi%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2012950!5e1!3m2!1sid!2sid!4v1753298538061!5m2!1sid!2sid" frameborder="0" style="border:0; width: 100%; height: 350px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
 
