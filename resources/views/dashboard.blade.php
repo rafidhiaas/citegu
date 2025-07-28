@@ -119,11 +119,13 @@
                                                 @if($testimonial->status == 'pending')
                                                     <form action="{{ route('admin.testimonials.approve', $testimonial) }}" method="POST" class="inline">
                                                         @csrf
-                                                        <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-emerald-600 rounded-md hover:bg-emerald-700 focus:outline-none focus:shadow-outline-emerald active:bg-emerald-800 transition duration-150 ease-in-out">Setujui</button> {{-- Perbaikan: text-gray-900 for light mode --}}
+                                                        <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-white bg-emerald-600 dark:bg-emerald-500 hover:bg-emerald-700 dark:hover:bg-emerald-600 focus:outline-none focus:shadow-outline-emerald active:bg-emerald-800 dark:active:bg-emerald-700 transition duration-150 ease-in-out">Setujui</button>
+
                                                     </form>
                                                     <form action="{{ route('admin.testimonials.reject', $testimonial) }}" method="POST" class="inline">
                                                         @csrf
-                                                        <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-800 dark:text-white bg-amber-400 rounded-md hover:bg-amber-500 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 transition duration-150 ease-in-out">Tolak</button> {{-- Perbaikan: text-gray-800 for light mode --}}
+                                                        <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-black dark:text-gray-900 bg-amber-400 dark:bg-amber-300 hover:bg-amber-500 dark:hover:bg-amber-400 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 dark:active:bg-amber-500 transition duration-150 ease-in-out">Tolak</button>
+
                                                     </form>
                                                 @elseif($testimonial->status == 'approved')
                                                     <form action="{{ route('admin.testimonials.reject', $testimonial) }}" method="POST" class="inline">
@@ -133,7 +135,8 @@
                                                 @elseif($testimonial->status == 'rejected')
                                                     <form action="{{ route('admin.testimonials.approve', $testimonial) }}" method="POST" class="inline">
                                                         @csrf
-                                                        <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-emerald-600 rounded-md hover:bg-emerald-700 focus:outline-none focus:shadow-outline-emerald active:bg-emerald-800 transition duration-150 ease-in-out">Setujui</button> {{-- Perbaikan: text-gray-900 for light mode --}}
+                                                        <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 rounded-md shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition duration-150 ease-in-out">Setujui</button>
+
                                                     </form>
                                                 @endif
                                                 <form action="{{ route('admin.testimonials.destroy', $testimonial) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus testimonial ini?');">

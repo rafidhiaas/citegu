@@ -39,8 +39,8 @@
 
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Admin Office</h4>
-          <p>Menara Kuningan Lt.30</p>
-          <p>Jl. HR Rasuna Said Kav5 BlokX/7 Karet kuningan, Kec. Setiabudi Jakarta 12910</p>
+          <p>Gedung Plaza 89, Lantai 12, Unit 1207,</p>
+          <p>Jl. H.R Rasuna Said Kav. X-7 No. 6,Karet Kuningan, Setia Budi, Jakarta 12940</p>
           <p>Indonesia ID</p>
           <p class="mt-4"><strong>Phone:</strong> 
           <span>+62 7777 1651 90</span></p>

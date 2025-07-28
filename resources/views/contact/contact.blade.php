@@ -18,7 +18,8 @@
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
                                 <h3>Alamat</h3>
-                                <p>Jl. HR Rasuna Said Kav5 BlokX/7 Karet kuningan, Kec. Setiabudi Jakarta 12910– Indonesia </p>
+                                <p>Gedung Plaza 89, Lantai 12, Unit 1207,</p>
+                                <p>Jl. H.R Rasuna Said Kav. X-7 No. 6,Karet Kuningan, SetiaBudi, Jakarta 12940 – Indonesia </p>
                             </div>
                         </div>
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
