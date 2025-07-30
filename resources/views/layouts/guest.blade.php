@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Daily-Report') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,7 +22,7 @@
                 </a>
             </div>
             {{-- Tambahkan judul di bawah logo --}}
-            <h2 class="text-2xl font-bold text-gray-700 dark:text-gray-200 mt-4 mb-6">Daily Report Login</h2>
+            <h2 class="text-2xl font-bold text-gray-700 dark:text-gray-200 mt-4 mb-6">Login admin website citegu</h2>
 
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}

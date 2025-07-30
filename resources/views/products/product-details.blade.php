@@ -32,7 +32,8 @@
                     @endif
 
                     <h3 class="mt-4">{{ $product->name }}</h3>
-                    <p>
+                    {{-- Perbaikan: Tambahkan inline style text-align: justify; untuk memastikan rata kanan kiri --}}
+                    <p style="text-align: justify;">
                         {{ $product->description ?? 'Belum ada deskripsi lengkap untuk produk ini.' }}
                     </p>
 
@@ -51,7 +52,7 @@
                             <li><strong>Status:</strong> {{ $product->is_active ? 'Aktif' : 'Non-aktif' }}</li>
                             <li><strong>Tanggal Ditambahkan:</strong> {{ $product->created_at->format('d M Y') }}</li>
                             @if($product->website)
-                                <li><strong>Website Resmi:</strong> <a href="{{ $product->website }}" target="_blank">{{ Str::limit($product->website, 30) }}</a></li>
+                                <li><strong>Link Website:</strong> <a href="{{ $product->website }}" target="_blank">{{ Str::limit($product->website, 30) }}</a></li>
                             @endif
                         </ul>
                     </div>

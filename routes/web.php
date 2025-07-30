@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PublicProductController; // Import untuk halaman produk publik
 use App\Http\Controllers\Admin\ProductController; // Import untuk manajemen produk admin
+use App\Http\Controllers\ServiceController; // BARU: Import ServiceController
 
 /*
 |--------------------------------------------------------------------------
@@ -25,17 +26,24 @@ use App\Http\Controllers\Admin\ProductController; // Import untuk manajemen prod
 // Rute untuk halaman utama (landing page)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Rute untuk halaman produk (sekarang dinamis dari database)
+// Rute untuk halaman produk (daftar produk)
 Route::get('/products', [PublicProductController::class, 'index'])->name('products.index');
+// BARU: Rute untuk halaman detail produk
+Route::get('/products/{product}', [PublicProductController::class, 'show'])->name('products.show');
+
 
 // Rute untuk halaman partners (publik)
 // Menggunakan nama rute yang berbeda untuk menghindari konflik dengan rute admin.partners.index
 Route::get('/partners', [PartnerController::class, 'index'])->name('partners.public.index');
 
-// Rute untuk halaman services
+// Rute untuk halaman services (daftar layanan)
 Route::get('/services', function () {
     return view('services.services');
 })->name('services.index');
+// BARU: Rute untuk halaman detail layanan
+// Asumsi: Anda akan memiliki ID atau slug untuk setiap layanan
+Route::get('/services/{id}', [ServiceController::class, 'show'])->name('services.show');
+
 
 // Rute khusus untuk service worker
 Route::get('/service-worker.js', function () {
@@ -70,7 +78,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
 
     // Rute untuk Manajemen Partners (Admin)
-    // Didefinisikan secara manual sesuai kebutuhan Anda (form create ada di index)
+    // Didefinisikan secara manual sesuai kebutuhan Anda (form create ada di dashboard)
     Route::get('/partners', [PartnerController::class, 'adminIndex'])->name('partners.index'); // Menampilkan daftar & form tambah
     Route::post('/partners', [PartnerController::class, 'store'])->name('partners.store'); // Menyimpan partner baru
     Route::get('/partners/{partner}/edit', [PartnerController::class, 'edit'])->name('partners.edit'); // Menampilkan form edit

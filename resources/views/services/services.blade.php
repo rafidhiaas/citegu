@@ -28,7 +28,7 @@
                             <i class="bi bi-map"></i>
                         </div>
                         <a href="../landing/service-details.html" class="stretched-link">
-                            <h3>Data Center Design</h3>
+                            <h3>Data Center</h3>
                         </a>
                         <p>"Create the digital infrastructure of the future with custom data center designs from CITEGU.
                             We integrate the latest technologies such as liquid cooling and advanced access management for unmatched performance and security."</p>

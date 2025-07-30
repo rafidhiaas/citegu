@@ -1,6 +1,7 @@
 @extends('layouts.master') <!-- Sesuaikan jika Anda punya layout master yang berbeda -->
 
 @section('content')
+<main class="main">
     <section id="portfolio" class="portfolio section">
 
         <div class="container section-title" data-aos="fade-up" style="padding-top: 100px;">
@@ -13,7 +14,7 @@
 
                 <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
                     <li data-filter="*" class="filter-active">All</li>
-                    <!-- Perbaikan : Kategori filter ini harus sesuai dengan nilai 'category' di database -->
+                    <!-- Kategori filter ini harus sesuai dengan nilai 'category' di database -->
                     <li data-filter=".filter-hardware">Data Center Hardware Facility</li>
                     <li data-filter=".filter-software">Data Center Software Facility</li>
                     <li data-filter=".filter-design">Design Data Center</li>
@@ -32,10 +33,14 @@
                                     <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid" alt="{{ $product->name }}">
                                 </a>
                                 <div class="portfolio-info">
-                                    {{-- Link ke halaman detail produk (jika ada) --}}
-                                    <h4><a href="{{ $product->details_link ?? 'javascript:void(0)' }}" title="More Details">{{ $product->name }}</a></h4>
+                                    {{-- Perbaikan: Link ke halaman detail produk ketika judul diklik --}}
+                                    <h4><a href="{{ route('products.show', $product->id) }}" title="More Details">{{ $product->name }}</a></h4>
                                     <p style="text-align: align;">
-                                        {{ $product->description }}
+                                        {{ Str::limit($product->description, 100) }}
+                                        {{-- Tambahkan link "More Details" jika deskripsi dipotong --}}
+                                        @if(strlen($product->description) > 100)
+                                            <a href="{{ route('products.show', $product->id) }}" class="text-blue-500 hover:text-blue-700 font-semibold">More Details</a>
+                                        @endif
                                     </p>
                                 </div>
                             </div>

@@ -33,7 +33,7 @@
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
                                 <h3>Email Kami</h3>
-                                <p>Sales@citegu.com</p>
+                                <p>Sales@citegu.id</p>
                             </div>
                         </div>
                         {{-- Penting: Ganti URL placeholder ini dengan URL embed Google Maps yang sebenarnya --}}

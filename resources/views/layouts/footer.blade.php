@@ -45,7 +45,7 @@
           <p class="mt-4"><strong>Phone:</strong> 
           <span>+62 7777 1651 90</span></p>
           <p><strong>Email:</strong> 
-          <span>sales@citegu.com</span></p>
+          <span>sales@citegu.id</span></p>
         </div>
 
       </div>
