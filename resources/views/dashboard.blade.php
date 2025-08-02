@@ -76,15 +76,15 @@
                             <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
                                 <thead class="bg-gray-200 dark:bg-gray-700"> {{-- Perbaikan: Header tabel --}}
                                     <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">ID</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Nama Penulis</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Perusahaan</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Jabatan</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Rating</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Konten</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Status</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Tanggal Dibuat</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Aksi</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">ID</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Nama Penulis</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Perusahaan</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Jabatan</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Rating</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Konten</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Tanggal Dibuat</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700"> {{-- Perbaikan: Body tabel --}}
@@ -124,13 +124,13 @@
                                                     </form>
                                                     <form action="{{ route('admin.testimonials.reject', $testimonial) }}" method="POST" class="inline">
                                                         @csrf
-                                                        <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-black dark:text-gray-900 bg-amber-400 dark:bg-amber-300 hover:bg-amber-500 dark:hover:bg-amber-400 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 dark:active:bg-amber-500 transition duration-150 ease-in-out">Tolak</button>
+                                                        <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-black dark:text-gray-400 bg-amber-400 dark:bg-amber-300 hover:bg-amber-500 dark:hover:bg-amber-400 focus:outline-none focus:shadow-outline-amber active:bg-amber-400 dark:active:bg-amber-500 transition duration-150 ease-in-out">Tolak</button>
 
                                                     </form>
                                                 @elseif($testimonial->status == 'approved')
                                                     <form action="{{ route('admin.testimonials.reject', $testimonial) }}" method="POST" class="inline">
                                                         @csrf
-                                                        <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-800 dark:text-white bg-amber-400 rounded-md hover:bg-amber-500 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 transition duration-150 ease-in-out">Tolak</button> {{-- Perbaikan: text-gray-800 for light mode --}}
+                                                        <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-400 dark:text-white bg-amber-400 rounded-md hover:bg-amber-500 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 transition duration-150 ease-in-out">Tolak</button>
                                                     </form>
                                                 @elseif($testimonial->status == 'rejected')
                                                     <form action="{{ route('admin.testimonials.approve', $testimonial) }}" method="POST" class="inline">
@@ -160,7 +160,7 @@
                             Manajemen Partner
                         </h3>
                         {{-- Tombol "Tambah Partner Baru" akan mengaktifkan form di bawah --}}
-                        <button type="button" id="toggleAddPartnerForm" class="px-4 py-2 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out"> {{-- Perbaikan: text-gray-900 for light mode --}}
+                        <button type="button" id="toggleAddPartnerForm" class="px-4 py-2 text-sm font-medium leading-5 text-gray-400 dark:text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out"> {{-- Perbaikan: text-gray-900 for light mode --}}
                             Tambah Partner Baru
                         </button>
                     </div>
@@ -243,14 +243,14 @@
                             <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
                                 <thead class="bg-gray-200 dark:bg-gray-700">
                                     <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">ID</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Nama Partner</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Logo</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Website</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Deskripsi</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Status Aktif</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Tanggal Dibuat</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Aksi</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">ID</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Nama Partner</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Logo</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Website</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Deskripsi</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Status Aktif</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Tanggal Dibuat</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
@@ -284,11 +284,11 @@
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $partner->created_at->format('d M Y') }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex items-center space-x-2">
-                                                <a href="javascript:void(0)" onclick="showEditPartnerForm({{ $partner->id }})" class="px-3 py-1 text-sm font-medium leading-5 text-gray-800 bg-amber-400 rounded-md hover:bg-amber-500 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 transition duration-150 ease-in-out">Edit</a>
+                                                <a href="javascript:void(0)" onclick="showEditPartnerForm({{ $partner->id }})" class="px-3 py-1 text-sm font-medium leading-5 text-gray-400 bg-amber-400 rounded-md hover:bg-amber-500 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 transition duration-150 ease-in-out">Edit</a>
                                                 <form action="{{ route('admin.partners.destroy', $partner) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus partner ini?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 transition duration-150 ease-in-out">Hapus</button> {{-- Perbaikan: text-gray-900 for light mode --}}
+                                                    <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 transition duration-150 ease-in-out">Hapus</button> 
                                                 </form>
                                             </td>
                                         </tr>
@@ -300,13 +300,13 @@
 
                     <hr class="my-8 border-blue-700 dark:border-blue-700">
 
-                    {{-- === Bagian Manajemen Produk === --}}
+                    <!-- === Bagian Manajemen Produk === -->
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="font-semibold text-xl text-blue-600 dark:text-blue-400 leading-tight">
                             Manajemen Produk & Solusi
                         </h3>
                         {{-- Tombol "Tambah Produk Baru" akan mengaktifkan form di bawah --}}
-                        <button type="button" id="toggleAddProductForm" class="px-4 py-2 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out"> {{-- Perbaikan: text-gray-900 for light mode --}}
+                        <button type="button" id="toggleAddProductForm" class="px-4 py-2 text-sm font-medium leading-5 text-gray-400 dark:text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out"> 
                             Tambah Produk Baru
                         </button>
                     </div>
@@ -383,10 +383,10 @@
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
-                                <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out me-2"> {{-- Perbaikan: text-gray-900 for light mode --}}
+                                <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out me-2"> 
                                     Simpan Produk
                                 </button>
-                                <button type="button" class="px-4 py-2 text-sm font-medium leading-5 text-gray-800 dark:text-white bg-gray-400 rounded-md hover:bg-gray-500 focus:outline-none focus:shadow-outline-gray active:bg-gray-600 transition duration-150 ease-in-out" onclick="document.getElementById('add-product-form-section').classList.add('hidden');"> {{-- Perbaikan: text-gray-800 for light mode --}}
+                                <button type="button" class="px-4 py-2 text-sm font-medium leading-5 text-gray-800 dark:text-white bg-gray-400 rounded-md hover:bg-gray-500 focus:outline-none focus:shadow-outline-gray active:bg-gray-600 transition duration-150 ease-in-out" onclick="document.getElementById('add-product-form-section').classList.add('hidden');"> 
                                     Batal
                                 </button>
                             </div>
@@ -401,15 +401,15 @@
                             <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
                                 <thead class="bg-gray-200 dark:bg-gray-700">
                                     <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">ID</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Nama Produk</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Gambar</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Kategori</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Deskripsi</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Link Detail</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Status Aktif</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Tanggal Dibuat</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-blue-300 uppercase tracking-wider">Aksi</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">ID</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Nama Produk</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Gambar</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Kategori</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Deskripsi</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Link Detail</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Status Aktif</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Tanggal Dibuat</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
@@ -444,11 +444,11 @@
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $product->created_at->format('d M Y') }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex items-center space-x-2">
-                                                <a href="javascript:void(0)" onclick="showEditProductForm({{ $product->id }})" class="px-3 py-1 text-sm font-medium leading-5 text-gray-800 dark:text-white bg-amber-400 rounded-md hover:bg-amber-500 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 transition duration-150 ease-in-out">Edit</a> {{-- Perbaikan: text-gray-800 for light mode --}}
+                                                <a href="javascript:void(0)" onclick="showEditProductForm({{ $product->id }})" class="px-3 py-1 text-sm font-medium leading-5 text-gray-400 dark:text-white bg-amber-400 rounded-md hover:bg-amber-500 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 transition duration-150 ease-in-out">Edit</a> 
                                                 <form action="{{ route('admin.products.destroy', $product) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 transition duration-150 ease-in-out">Hapus</button> {{-- Perbaikan: text-gray-900 for light mode --}}
+                                                    <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 transition duration-150 ease-in-out">Hapus</button> 
                                                 </form>
                                             </td>
                                         </tr>
@@ -464,9 +464,9 @@
     </div>
 
     {{-- Formulir Edit Produk (BARU - Awalnya tersembunyi) --}}
-    <div id="edit-product-form-section" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-blue-600 w-full md:w-3/4 lg:w-1/2 xl:w-1/3 overflow-y-auto max-h-[90vh]"> {{-- Perbaikan: Latar belakang dan border form edit --}}
-            <div class="p-6 text-gray-900 dark:text-gray-100"> {{-- Perbaikan: Warna teks form edit --}}
+    <div id="edit-product-form-section" class="fixed inset-0 bg-gray-400 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-blue-600 w-full md:w-3/4 lg:w-1/2 xl:w-1/3 overflow-y-auto max-h-[90vh]"> 
+            <div class="p-6 text-gray-400 dark:text-gray-100"> 
                 <h3 class="font-semibold text-xl text-blue-600 dark:text-blue-400 leading-tight mb-4 border-b pb-2 border-blue-500 dark:border-blue-700">
                     Edit Produk & Solusi
                 </h3>
@@ -524,7 +524,7 @@
                         </div>
 
                         <div class="col-span-1 md:col-span-2">
-                            <label for="edit_product_details_link" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Link Detail Produk (URL)</label>
+                            <label for="edit_product_details_link" class="block text-sm font-medium text-gray-400 dark:text-gray-400">Link Detail Produk (URL)</label>
                             <input type="url" name="details_link" id="edit_product_details_link" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('details_link') border-red-500 ring-red-500 @enderror" value="{{ old('details_link') }}" placeholder="https://example.com/product-detail" autocomplete="off" aria-describedby="edit_product_details_link-error">
                             @error('details_link')<p id="edit_product_details_link-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
                         </div>
