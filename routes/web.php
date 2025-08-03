@@ -1,14 +1,26 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
+// Import Controller untuk Rute Publik
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PartnerController;
-use App\Http\Controllers\PublicProductController; // Import untuk halaman produk publik
-use App\Http\Controllers\Admin\ProductController; // Import untuk manajemen produk admin
-use App\Http\Controllers\ServiceController; // BARU: Import ServiceController
+// Hapus: use App\Http\Controllers\TestimonialController; // Ini tidak lagi digunakan karena ada TestimonialPublicController
+// Hapus: use App\Http\Controllers\PartnerController; // Ini tidak lagi digunakan karena ada PublicPartnerController
+use App\Http\Controllers\PublicProductController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TestimonialPublicController; // Ini yang digunakan untuk publik testimonial
+use App\Http\Controllers\PublicPartnerController;     // Ini yang digunakan untuk publik partner
+
+// Import Controller untuk Rute Admin
+use App\Http\Controllers\DashboardController; // Untuk dashboard admin utama
+use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController; // Alias untuk TestimonialController admin
+use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;         // Alias untuk PartnerController admin
+use App\Http\Controllers\Admin\ProductController as AdminProductController;         // Alias untuk ProductController admin
+use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+
+use App\Http\Controllers\ProfileController; // Untuk rute profil Breeze
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,81 +33,62 @@ use App\Http\Controllers\ServiceController; // BARU: Import ServiceController
 |
 */
 
-// --- Rute Aplikasi Kustom Anda ---
+// --- Rute Aplikasi Kustom Anda (Publik) ---
 
 // Rute untuk halaman utama (landing page)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Rute untuk halaman produk (daftar produk)
+// Rute untuk halaman produk (daftar produk publik)
 Route::get('/products', [PublicProductController::class, 'index'])->name('products.index');
-// BARU: Rute untuk halaman detail produk
+// Rute untuk halaman detail produk publik
 Route::get('/products/{product}', [PublicProductController::class, 'show'])->name('products.show');
 
 
 // Rute untuk halaman partners (publik)
-// Menggunakan nama rute yang berbeda untuk menghindari konflik dengan rute admin.partners.index
-Route::get('/partners', [PartnerController::class, 'index'])->name('partners.public.index');
+Route::get('/partners', [PublicPartnerController::class, 'index'])->name('partners.public.index');
 
 // Rute untuk halaman services (daftar layanan)
-Route::get('/services', function () {
-    return view('services.services');
-})->name('services.index');
-// BARU: Rute untuk halaman detail layanan
-// Asumsi: Anda akan memiliki ID atau slug untuk setiap layanan
-Route::get('/services/{id}', [ServiceController::class, 'show'])->name('services.show');
+Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+// Rute untuk halaman detail layanan
+Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
 
-
-// Rute khusus untuk service worker
-Route::get('/service-worker.js', function () {
-    return response()->file(public_path('service-worker.js'));
-});
-
-// Rute untuk menampilkan halaman kontak
-Route::get('/contact', function () {
-    return view('contact.contact');
-})->name('contact.index');
-
+// Rute untuk halaman kontak
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 // Rute POST untuk menghandle pengiriman form kontak
-Route::post('/contact', function () {
-    // Logika pengiriman form kontak di sini (Anda bisa memindahkan ini ke ContactController)
-    return back()->with('success', 'Pesan Anda telah terkirim!');
-})->name('contact.submit');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-// Rute untuk TESTIMONIALS (Form Pengisian oleh Pengguna)
-Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
-Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
+// Rute untuk TESTIMONIALS (Form Pengisian oleh Pengguna Publik)
+Route::get('/testimonials/create', [TestimonialPublicController::class, 'create'])->name('testimonials.create');
+Route::post('/testimonials', [TestimonialPublicController::class, 'store'])->name('testimonials.store');
 
 
 // --- Rute Admin (Dilindungi oleh Auth Middleware) ---
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     // Rute untuk Dashboard Admin (saat mengakses /admin)
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Rute untuk Testimonial (Admin)
-    Route::get('/testimonials', [TestimonialController::class, 'adminIndex'])->name('testimonials.index');
-    Route::post('/testimonials/{testimonial}/approve', [TestimonialController::class, 'approve'])->name('testimonials.approve');
-    Route::post('/testimonials/{testimonial}/reject', [TestimonialController::class, 'reject'])->name('testimonials.reject');
-    Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
+    // Rute untuk Manajemen Testimonial (Admin)
+    Route::get('/testimonials', [AdminTestimonialController::class, 'index'])->name('testimonials.index');
+    Route::post('/testimonials/{testimonial}/approve', [AdminTestimonialController::class, 'approve'])->name('testimonials.approve');
+    Route::post('/testimonials/{testimonial}/reject', [AdminTestimonialController::class, 'reject'])->name('testimonials.reject');
+    Route::delete('/testimonials/{testimonial}', [AdminTestimonialController::class, 'destroy'])->name('testimonials.destroy');
 
     // Rute untuk Manajemen Partners (Admin)
-    // Didefinisikan secara manual sesuai kebutuhan Anda (form create ada di dashboard)
-    Route::get('/partners', [PartnerController::class, 'adminIndex'])->name('partners.index'); // Menampilkan daftar & form tambah
-    Route::post('/partners', [PartnerController::class, 'store'])->name('partners.store'); // Menyimpan partner baru
-    Route::get('/partners/{partner}/edit', [PartnerController::class, 'edit'])->name('partners.edit'); // Menampilkan form edit
-    Route::put('/partners/{partner}', [PartnerController::class, 'update'])->name('partners.update'); // Memperbarui partner
-    Route::delete('/partners/{partner}', [PartnerController::class, 'destroy'])->name('partners.destroy'); // Menghapus partner
+    Route::resource('partners', AdminPartnerController::class);
 
     // Rute untuk Manajemen Products (Admin)
-    // Menggunakan Route::resource untuk CRUD standar
-    Route::resource('products', ProductController::class);
-    // Jika Anda juga membuat manajemen kategori produk di admin:
-    // Route::resource('product-categories', Admin\ProductCategoryController::class);
+    Route::resource('products', AdminProductController::class);
+
+    // Rute untuk Manajemen Layanan (Admin)
+    Route::resource('services', AdminServiceController::class);
 });
 
 
 // --- Rute Default Laravel Breeze (Otentikasi & Profil) ---
 
-// Rute Dashboard setelah login (ini adalah dashboard default Breeze, bisa diarahkan ke /admin jika diinginkan)
+// Rute Dashboard setelah login (ini adalah dashboard default Breeze)
+// Jika Anda ingin pengguna langsung ke /admin setelah login, bisa gunakan:
+// Route::redirect('/dashboard', '/admin')->name('dashboard');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // Rute Profil Pengguna

@@ -1,109 +1,81 @@
-@extends('layouts.master') <!-- Sesuaikan dengan layout admin  -->
+@extends('layouts.admin')
+
+@section('header', 'Manajemen Produk & Solusi')
 
 @section('content')
-<main class="main">
-    <section id="admin-products-management" class="section" style="padding-top: 100px;">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Manajemen Produk & Solusi</h2>
-            <p>Kelola daftar produk dan solusi yang ditawarkan oleh perusahaan Anda.</p>
-        </div>
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-            <!-- Pesan Sukses/Error Global -->
-            @if(session('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if(session('error'))
-                <div class="alert alert-danger" role="alert">
-                    {{ session('error') }}
-                </div>
-            @endif
-
-            <!-- Tombol untuk kembali ke Dashboard (tempat form tambah produk berada) -->
-            <div class="mb-4 d-flex justify-content-end">
-                <a href="{{ route('dashboard') }}" class="btn btn-primary">
-                    Kembali ke Dashboard (Tambah Produk)
+    <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg border border-blue-600">
+        <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-semibold text-xl text-blue-600 dark:text-blue-400 leading-tight">
+                    Manajemen Produk & Solusi
+                </h3>
+                <a href="{{ route('admin.products.create') }}" class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out">
+                    Tambah Produk Baru
                 </a>
             </div>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">Kelola daftar produk dan solusi yang ditawarkan oleh perusahaan Anda.</p>
 
-            {{-- Formulir Tambah Produk telah dipindahkan ke dashboard.blade.php --}}
-            {{-- Bagian ini dikosongkan karena form sudah tidak ada di sini --}}
-
-            <!-- Tabel Manajemen Produk -->
-            <div>
-                @if($products->isEmpty())
-                    <p class="text-lg text-center text-neutral-700 dark:text-neutral-300">Belum ada produk yang ditambahkan.</p>
-                @else
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered w-full">
-                            <thead>
-                                <tr class="text-neutral-700 dark:text-neutral-300">
-                                    <th class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700">ID</th>
-                                    <th class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700">Nama Produk</th>
-                                    <th class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700">Gambar</th>
-                                    <th class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700">Kategori</th>
-                                    <th class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700">Deskripsi</th>
-                                    <th class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700">Link Detail</th>
-                                    <th class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700">Status Aktif</th>
-                                    <th class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700">Tanggal Dibuat</th>
-                                    <th class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700">Aksi</th>
+            @if($products->isEmpty())
+                <p class="text-gray-700 dark:text-gray-300 mb-6">Belum ada produk yang ditambahkan.</p>
+            @else
+                <div class="overflow-x-auto shadow-md sm:rounded-lg border border-gray-300 dark:border-gray-700 mb-8">
+                    <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
+                        <thead class="bg-gray-200 dark:bg-gray-700">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">ID</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Nama Produk</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Gambar</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Kategori</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Deskripsi</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Link Detail</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Status Aktif</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Tanggal Dibuat</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                            @foreach($products as $product)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">{{ $product->id }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $product->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                        @if($product->image)
+                                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }} Gambar" class="h-10 w-auto object-contain">
+                                        @else
+                                            <span class="text-gray-500">-</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $product->category }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">{{ Str::limit($product->description, 50) ?? '-' }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                                        @if($product->details_link)
+                                            <a href="{{ $product->details_link }}" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500">
+                                                {{ Str::limit($product->details_link, 30) }}
+                                            </a>
+                                        @else
+                                            <span class="text-gray-500">-</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $product->is_active ? 'bg-emerald-600 text-white' : 'bg-red-600 text-white' }}">
+                                            {{ $product->is_active ? 'Aktif' : 'Non-aktif' }}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $product->created_at->format('d M Y') }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex items-center space-x-2">
+                                        <a href="{{ route('admin.products.edit', $product) }}" class="px-3 py-1 text-sm font-medium leading-5 text-white bg-amber-400 rounded-md hover:bg-amber-500 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 transition duration-150 ease-in-out">Edit</a>
+                                        <form action="{{ route('admin.products.destroy', $product) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 transition duration-150 ease-in-out">Hapus</button>
+                                        </form>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody class="text-neutral-600 dark:text-neutral-400">
-                                @foreach($products as $product)
-                                    <tr>
-                                        <td class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-800">{{ $product->id }}</td>
-                                        <td class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-800">{{ $product->name }}</td>
-                                        <td class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-800">
-                                            @if($product->image)
-                                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }} Gambar" style="max-width: 70px; max-height: 50px; object-fit: contain;">
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
-                                        <td class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-800">{{ $product->category }}</td>
-                                        <td class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-800">{{ Str::limit($product->description, 50) ?? '-' }}</td>
-                                        <td class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-800">
-                                            @if($product->details_link)
-                                                <a href="{{ $product->details_link }}" target="_blank" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">{{ Str::limit($product->details_link, 30) }}</a>
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
-                                        <td class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-800">
-                                            <span class="badge {{ $product->is_active ? 'bg-success' : 'bg-danger' }}">
-                                                {{ $product->is_active ? 'Aktif' : 'Non-aktif' }}
-                                            </span>
-                                        </td>
-                                        <td class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-800">{{ $product->created_at->format('d M Y') }}</td>
-                                        <td class="py-2 px-4 border-b border-neutral-200 dark:border-neutral-800 whitespace-nowrap">
-                                            <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-warning btn-sm inline-block me-1">Edit</a>
-                                            <form action="{{ route('admin.products.destroy', $product) }}" method="POST" class="inline-block" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @endif
-            </div>
-
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
-    </section>
-</main>
-
-@section('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Skrip ini sekarang hanya untuk halaman admin/products/index, tidak ada form toggle lagi
-        // Tombol "Kembali ke Dashboard" akan mengarahkan ke dashboard tempat form berada.
-    });
-</script>
+    </div>
 @endsection

@@ -1,9 +1,6 @@
-@extends('layouts.master') <!-- Sesuaikan dengan layout master Anda -->
-
-@section('content')
+@extends('layouts.master') @section('content')
 <main class="main">
 
-    <!-- Page Title -->
     <div class="page-title light-background">
         <div class="container">
             <h1>Detail Produk: {{ $product->name }}</h1>
@@ -15,10 +12,7 @@
                 </ol>
             </nav>
         </div>
-    </div><!-- End Page Title -->
-
-    <!-- Product Details Section -->
-    <section id="product-details" class="product-details section">
+    </div><section id="product-details" class="product-details section">
 
         <div class="container">
 
@@ -32,7 +26,6 @@
                     @endif
 
                     <h3 class="mt-4">{{ $product->name }}</h3>
-                    {{-- Perbaikan: Tambahkan inline style text-align: justify; untuk memastikan rata kanan kiri --}}
                     <p style="text-align: justify;">
                         {{ $product->description ?? 'Belum ada deskripsi lengkap untuk produk ini.' }}
                     </p>
@@ -48,22 +41,25 @@
                     <div class="product-info-box p-4 bg-light rounded shadow-sm">
                         <h4 class="mb-3">Informasi Produk</h4>
                         <ul class="list-unstyled">
-                            <li><strong>Kategori:</strong> {{ $product->category }}</li>
+                            <li><strong>Kategori:</strong> {{ str_replace('filter-', '', Str::title(str_replace('-', ' ', $product->category))) }}</li>
                             <li><strong>Status:</strong> {{ $product->is_active ? 'Aktif' : 'Non-aktif' }}</li>
                             <li><strong>Tanggal Ditambahkan:</strong> {{ $product->created_at->format('d M Y') }}</li>
                             @if($product->website)
-                                <li><strong>Link Website:</strong> <a href="{{ $product->website }}" target="_blank">{{ Str::limit($product->website, 30) }}</a></li>
+                                <li><strong>Website Resmi:</strong> <a href="{{ $product->website }}" target="_blank">{{ Str::limit($product->website, 30) }}</a></li>
                             @endif
                         </ul>
                     </div>
-                    {{-- Anda bisa menambahkan daftar fitur atau spesifikasi lainnya di sini --}}
+                    
                     <div class="services-list mt-4">
                         <h4>Kategori Serupa</h4>
-                        <a href="#" class="active">{{ $product->category }}</a>
-                        {{-- Anda bisa menambahkan link kategori lain secara dinamis di sini --}}
-                        <a href="{{ route('products.index', ['category' => 'filter-hardware']) }}">Data Center Hardware</a>
-                        <a href="{{ route('products.index', ['category' => 'filter-software']) }}">Data Center Software</a>
-                        {{-- ... dan seterusnya ... --}}
+                        @if(!empty($categories))
+                            @foreach ($categories as $category)
+                                <a href="{{ route('products.index', ['category' => $category->category]) }}"
+                                   class="{{ $product->category === $category->category ? 'active' : '' }}">
+                                   {{ str_replace('filter-', '', Str::title(str_replace('-', ' ', $category->category))) }}
+                                </a>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 
@@ -71,7 +67,5 @@
 
         </div>
 
-    </section><!-- /Product Details Section -->
-
-</main>
+    </section></main>
 @endsection

@@ -1,75 +1,57 @@
-@extends('layouts.master') {{-- Memastikan menggunakan layout master yang sudah disempurnakan --}}
+@extends('layouts.admin')
+
+@section('header', 'Tambah Partner Baru')
 
 @section('content')
-<main class="main">
-    <section id="create-partner" class="section">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Tambah Partner Baru</h2>
-            <p>Isi detail partner yang akan ditambahkan.</p>
-        </div>
+    <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg border border-blue-600">
+        <div class="p-6 text-gray-900 dark:text-gray-100">
+            <h4 class="font-semibold text-lg text-blue-600 dark:text-blue-300 leading-tight mb-4">Formulir Tambah Partner Baru</h4>
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    {{-- Form ini tidak dibungkus dalam div card lagi sesuai permintaan --}}
-                    {{-- HAPUS class="php-email-form" untuk menghindari konflik --}}
-                    <form action="{{ route('admin.partners.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf {{-- Penting untuk form Laravel --}}
-                        @if(session('success'))
-                            <div class="alert alert-success" role="alert">{{ session('success') }}</div>
-                        @endif
-                        @if ($errors->any())
-                            <div class="alert alert-danger" role="alert">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+            <form action="{{ route('admin.partners.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
 
-                        <div class="row gy-4">
-                            <div class="col-md-12">
-                                {{-- Label disempurnakan dengan kelas Tailwind yang responsif terhadap mode gelap --}}
-                                <label for="name" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Nama Partner <span class="text-red-500">*</span></label>
-                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required autocomplete="organization" aria-describedby="name_error">
-                                @error('name')<div id="name_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                            </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="partner_name" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Nama Partner <span class="text-red-500">*</span></label>
+                        <input type="text" name="name" id="partner_name" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('name') border-red-500 ring-red-500 @enderror" value="{{ old('name') }}" required autocomplete="organization" aria-describedby="partner_name-error">
+                        @error('name')<p id="partner_name-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                    </div>
 
-                            <div class="col-md-12">
-                                <label for="logo" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Logo Partner (Gambar)</label>
-                                <input type="file" name="logo" id="logo" class="form-control @error('logo') is-invalid @enderror" autocomplete="off" aria-describedby="logo_error">
-                                @error('logo')<div id="logo_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                            </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="partner_logo" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Logo Partner</label>
+                        <input type="file" name="logo" id="partner_logo" class="mt-1 block w-full text-gray-900 bg-white border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('logo') border-red-500 ring-red-500 @enderror" aria-describedby="partner_logo-error">
+                        @error('logo')<p id="partner_logo-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                    </div>
 
-                            <div class="col-md-12">
-                                <label for="website" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Website Partner (URL Lengkap)</label>
-                                <input type="url" name="website" id="website" class="form-control @error('website') is-invalid @enderror" value="{{ old('website') }}" placeholder="https://example.com" autocomplete="url" aria-describedby="website_error">
-                                @error('website')<div id="website_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                            </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="partner_website" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Website Partner (URL)</label>
+                        <input type="url" name="website" id="partner_website" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('website') border-red-500 ring-red-500 @enderror" value="{{ old('website') }}" placeholder="https://example.com" autocomplete="url" aria-describedby="partner_website-error">
+                        @error('website')<p id="partner_website-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                    </div>
 
-                            <div class="col-md-12">
-                                <label for="description" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Deskripsi Singkat</label>
-                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="5" autocomplete="off" aria-describedby="description_error">{{ old('description') }}</textarea>
-                                @error('description')<div id="description_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                            </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="partner_description" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Deskripsi Singkat</label>
+                        <textarea name="description" id="partner_description" rows="3" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('description') border-red-500 ring-red-500 @enderror" aria-describedby="partner_description-error">{{ old('description') }}</textarea>
+                        @error('description')<p id="partner_description-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                    </div>
 
-                            <div class="col-md-12 form-check mb-3">
-                                <input type="hidden" name="is_active" value="0">
-                                <input type="checkbox" name="is_active" id="is_active" class="form-check-input" {{ old('is_active', true) ? 'checked' : '' }} value="1" autocomplete="off" aria-describedby="is_active_error">
-                                <label for="is_active" class="form-check-label text-sm font-medium text-neutral-700 dark:text-neutral-300">Aktifkan Partner</label>
-                                @error('is_active')<div id="is_active_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                            </div>
-
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary me-2">Simpan Partner</button>
-                                <a href="{{ route('admin.partners.index') }}" class="btn btn-secondary">Batal</a>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="col-span-1 md:col-span-2 flex items-center">
+                        <input type="hidden" name="is_active" value="0">
+                        <input type="checkbox" name="is_active" id="partner_is_active" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" {{ old('is_active', true) ? 'checked' : '' }} value="1" aria-describedby="partner_is_active-error">
+                        <label for="partner_is_active" class="ml-2 text-gray-700 dark:text-gray-100">Aktifkan Partner</label>
+                        @error('is_active')<p id="partner_is_active-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                    </div>
                 </div>
-            </div>
+
+                <div class="flex items-center justify-end mt-4">
+                    <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out me-2">
+                        Simpan Partner
+                    </button>
+                    <a href="{{ route('admin.partners.index') }}" class="px-4 py-2 text-sm font-medium leading-5 text-gray-800 dark:text-white bg-gray-400 rounded-md hover:bg-gray-500 focus:outline-none focus:shadow-outline-gray active:bg-gray-600 transition duration-150 ease-in-out">
+                        Batal
+                    </a>
+                </div>
+            </form>
         </div>
-    </section>
-</main>
+    </div>
 @endsection

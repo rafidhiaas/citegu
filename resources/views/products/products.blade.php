@@ -1,4 +1,4 @@
-@extends('layouts.master') <!-- Sesuaikan jika Anda punya layout master yang berbeda -->
+@extends('layouts.master')
 
 @section('content')
 <main class="main">
@@ -14,12 +14,14 @@
 
                 <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
                     <li data-filter="*" class="filter-active">All</li>
-                    <!-- Kategori filter ini harus sesuai dengan nilai 'category' di database -->
-                    <li data-filter=".filter-hardware">Data Center Hardware Facility</li>
-                    <li data-filter=".filter-software">Data Center Software Facility</li>
-                    <li data-filter=".filter-design">Design Data Center</li>
-                    <li data-filter=".filter-apps">Apps</li>
-                    <li data-filter=".filter-solutions">Solutions</li>
+                    @if(!empty($categories))
+                        @foreach($categories as $category)
+                            @php
+                                $categoryName = str_replace('filter-', '', Str::title(str_replace('-', ' ', $category->category)));
+                            @endphp
+                            <li data-filter=".{{ $category->category }}">{{ $categoryName }}</li>
+                        @endforeach
+                    @endif
                 </ul>
 
                 <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
@@ -27,17 +29,13 @@
                     @forelse($products as $product)
                         <div class="col-lg-4 col-md-6 portfolio-item isotope-item {{ $product->category }}">
                             <div class="portfolio-content h-100">
-                                {{-- Link gambar untuk GLightbox --}}
                                 <a href="{{ asset('storage/' . $product->image) }}" data-gallery="portfolio-gallery-app" class="glightbox">
-                                    {{-- Gambar produk --}}
                                     <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid" alt="{{ $product->name }}">
                                 </a>
                                 <div class="portfolio-info">
-                                    {{-- Perbaikan: Link ke halaman detail produk ketika judul diklik --}}
                                     <h4><a href="{{ route('products.show', $product->id) }}" title="More Details">{{ $product->name }}</a></h4>
-                                    <p style="text-align: align;">
+                                    <p style="text-align: justify;">
                                         {{ Str::limit($product->description, 100) }}
-                                        {{-- Tambahkan link "More Details" jika deskripsi dipotong --}}
                                         @if(strlen($product->description) > 100)
                                             <a href="{{ route('products.show', $product->id) }}" class="text-blue-500 hover:text-blue-700 font-semibold">More Details</a>
                                         @endif

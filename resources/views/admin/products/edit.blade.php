@@ -1,94 +1,77 @@
-@extends('layouts.master') <!-- Sesuaikan dengan layout admin Anda -->
+@extends('layouts.admin')
+
+@section('header', 'Edit Produk & Solusi')
 
 @section('content')
-<main class="main">
-    <section id="edit-product-management" class="section" style="padding-top: 100px;">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Edit Produk & Solusi</h2>
-            <p>Perbarui informasi produk dan solusi.</p>
-        </div>
+    <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg border border-blue-600">
+        <div class="p-6 text-gray-900 dark:text-gray-100">
+            <h4 class="font-semibold text-lg text-blue-600 dark:text-blue-300 leading-tight mb-4">Formulir Edit Produk</h4>
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-            <div class="p-6 md:p-8 bg-white dark:bg-neutral-900 rounded-xl shadow-lg border border-neutral-200 dark:border-neutral-700">
+            <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 
-                <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT') {{-- Gunakan metode PUT untuk update --}}
-
-                    @if(session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    @if($errors->any())
-                        <div class="alert alert-danger" role="alert">
-                            <ul class="list-unstyled mb-0">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <div class="row gy-4">
-                        <div class="col-md-12">
-                            <label for="name" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Nama Produk <span class="text-red-500">*</span></label>
-                            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $product->name) }}" required autocomplete="off" aria-describedby="name_error">
-                            @error('name')<div id="name_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-
-                        <div class="col-md-12">
-                            <label for="description" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Deskripsi Produk</label>
-                            <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="5" autocomplete="off" aria-describedby="description_error">{{ old('description', $product->description) }}</textarea>
-                            @error('description')<div id="description_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-
-                        <div class="col-md-12">
-                            <label for="image" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Gambar Produk</label>
-                            <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" autocomplete="off" aria-describedby="image_error">
-                            @error('image')<div id="image_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                            @if($product->image)
-                                <div class="mt-2">
-                                    <p class="text-sm text-neutral-600 dark:text-neutral-400">Gambar saat ini:</p>
-                                    <img src="{{ asset('storage/' . $product->image) }}" alt="Gambar Produk Saat Ini" class="img-fluid" style="max-width: 150px; height: auto;">
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="col-md-12">
-                            <label for="category" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Kategori Produk <span class="text-red-500">*</span></label>
-                            <select name="category" id="category" class="form-control @error('category') is-invalid @enderror" required aria-describedby="category_error">
-                                <option value="">Pilih Kategori</option>
-                                <option value="filter-hardware" {{ old('category', $product->category) == 'filter-hardware' ? 'selected' : '' }}>Data Center Hardware Facility</option>
-                                <option value="filter-software" {{ old('category', $product->category) == 'filter-software' ? 'selected' : '' }}>Data Center Software Facility</option>
-                                <option value="filter-design" {{ old('category', $product->category) == 'filter-design' ? 'selected' : '' }}>Design Data Center</option>
-                                <option value="filter-apps" {{ old('category', $product->category) == 'filter-apps' ? 'selected' : '' }}>Apps</option>
-                                <option value="filter-solutions" {{ old('category', $product->category) == 'filter-solutions' ? 'selected' : '' }}>Solutions</option>
-                            </select>
-                            @error('category')<div id="category_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-
-                        <div class="col-md-12">
-                            <label for="details_link" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Link Detail Produk (URL)</label>
-                            <input type="url" name="details_link" id="details_link" class="form-control @error('details_link') is-invalid @enderror" value="{{ old('details_link', $product->details_link) }}" placeholder="https://example.com/product-detail" autocomplete="off" aria-describedby="details_link_error">
-                            @error('details_link')<div id="details_link_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-
-                        <div class="col-md-12 form-check mb-3">
-                            <input type="hidden" name="is_active" value="0">
-                            <input type="checkbox" name="is_active" id="is_active" class="form-check-input" {{ old('is_active', $product->is_active) ? 'checked' : '' }} value="1" autocomplete="off" aria-describedby="is_active_error">
-                            <label for="is_active" class="form-check-label text-sm font-medium text-neutral-700 dark:text-neutral-300">Aktifkan Produk</label>
-                            @error('is_active')<div id="is_active_error" class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary me-2">Perbarui Produk</button>
-                            <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Batal</a>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="edit_product_name" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Nama Produk <span class="text-red-500">*</span></label>
+                        <input type="text" name="name" id="edit_product_name" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('name') border-red-500 ring-red-500 @enderror" value="{{ old('name', $product->name) }}" required autocomplete="off" aria-describedby="edit_product_name-error">
+                        @error('name')<p id="edit_product_name-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
                     </div>
-                </form>
-            </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="edit_product_description" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Deskripsi Produk</label>
+                        <textarea name="description" id="edit_product_description" rows="3" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('description') border-red-500 ring-red-500 @enderror" aria-describedby="edit_product_description-error">{{ old('description', $product->description) }}</textarea>
+                        @error('description')<p id="edit_product_description-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="edit_product_image" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Gambar Produk</label>
+                        <input type="file" name="image" id="edit_product_image" class="mt-1 block w-full text-gray-900 bg-white border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('image') border-red-500 ring-red-500 @enderror" aria-describedby="edit_product_image-error">
+                        @error('image')<p id="edit_product_image-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                        @if($product->image)
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-700 dark:text-neutral-400">Gambar saat ini:</p>
+                                <img src="{{ asset('storage/' . $product->image) }}" alt="Gambar Produk Saat Ini" class="h-16 w-auto object-contain">
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="edit_product_category" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Kategori Produk <span class="text-red-500">*</span></label>
+                        <select name="category" id="edit_product_category" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('category') border-red-500 ring-red-500 @enderror" required aria-describedby="edit_product_category-error">
+                            <option value="">Pilih Kategori</option>
+                            <option value="filter-hardware" {{ old('category', $product->category) == 'filter-hardware' ? 'selected' : '' }}>Data Center Hardware Facility</option>
+                            <option value="filter-software" {{ old('category', $product->category) == 'filter-software' ? 'selected' : '' }}>Data Center Software Facility</option>
+                            <option value="filter-design" {{ old('category', $product->category) == 'filter-design' ? 'selected' : '' }}>Design Data Center</option>
+                            <option value="filter-apps" {{ old('category', $product->category) == 'filter-apps' ? 'selected' : '' }}>Apps</option>
+                            <option value="filter-solutions" {{ old('category', $product->category) == 'filter-solutions' ? 'selected' : '' }}>Solutions</option>
+                        </select>
+                        @error('category')<p id="edit_product_category-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="edit_product_details_link" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Link Detail Produk (URL)</label>
+                        <input type="url" name="details_link" id="edit_product_details_link" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('details_link') border-red-500 ring-red-500 @enderror" value="{{ old('details_link', $product->details_link) }}" placeholder="https://example.com/product-detail" autocomplete="off" aria-describedby="edit_product_details_link-error">
+                        @error('details_link')<p id="edit_product_details_link-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2 flex items-center">
+                        <input type="hidden" name="is_active" value="0">
+                        <input type="checkbox" name="is_active" id="edit_product_is_active" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" value="1" {{ old('is_active', $product->is_active) ? 'checked' : '' }} aria-describedby="edit_product_is_active-error">
+                        <label for="edit_product_is_active" class="ml-2 text-gray-700 dark:text-gray-100">Aktifkan Produk</label>
+                        @error('is_active')<p id="edit_product_is_active-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end mt-4">
+                    <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out me-2">
+                        Perbarui Produk
+                    </button>
+                    <a href="{{ route('admin.products.index') }}" class="px-4 py-2 text-sm font-medium leading-5 text-gray-800 dark:text-white bg-gray-400 rounded-md hover:bg-gray-500 focus:outline-none focus:shadow-outline-gray active:bg-gray-600 transition duration-150 ease-in-out">
+                        Batal
+                    </a>
+                </div>
+            </form>
         </div>
-    </section>
-</main>
+    </div>
 @endsection

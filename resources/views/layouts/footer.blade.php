@@ -18,8 +18,8 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About us</a></li>
+            <li><a href="{{ route('home') }}">Home</a></li>
+            <li><a href="{{ route('home') }}#about">About us</a></li>
             <li><a href="{{ url('/services') }}">Services</a></li>
             <li><a href="#Terms of service">Terms of service</a></li>
             <li><a href="#">Privacy policy</a></li>
@@ -29,11 +29,11 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="#contact">Data Center</a></li>
-            <li><a href="#contact">Web Development</a></li>
-            <li><a href="#contact">Product Management</a></li>
-            <li><a href="#contact">Marketing</a></li>
-            <li><a href="#contact">Graphic Design</a></li>
+            <li><a href="{{ url('/services') }}">Data Center</a></li>
+            <li><a href="{{ url('/services') }}">Web Development</a></li>
+            <li><a href="{{ url('/services') }}">Product Management</a></li>
+            <li><a href="{{ url('/services') }}">Marketing</a></li>
+            <li><a href="{{ url('/services') }}">Graphic Design</a></li>
           </ul>
         </div>
 

@@ -36,9 +36,15 @@
                 </div>
 
                 {{-- Kartu Total Produk --}}
-                <div class="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md text-gray-800 dark:text-gray-100 flex flex-col items-center justify-center min-w-[150px] flex-grow border-l-4 border-emerald-500 dark:border-emerald-400">
+                <div class="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md text-gray-800 dark:text-gray-100 flex flex-col items-center justify-center min-w-[150px] flex-grow border-l-4 border-purple-500 dark:border-purple-400">
                     <p class="text-xs uppercase opacity-75 text-center text-gray-600 dark:text-gray-400">Total Produk</p>
-                    <p class="text-3xl font-bold mt-1 text-emerald-600 dark:text-emerald-400">{{ $totalProducts }}</p>
+                    <p class="text-3xl font-bold mt-1 text-purple-600 dark:text-purple-400">{{ $totalProducts }}</p>
+                </div>
+                
+                {{-- Kartu Total Layanan --}}
+                <div class="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md text-gray-800 dark:text-gray-100 flex flex-col items-center justify-center min-w-[150px] flex-grow border-l-4 border-teal-500 dark:border-teal-400">
+                    <p class="text-xs uppercase opacity-75 text-center text-gray-600 dark:text-gray-400">Total Layanan</p>
+                    <p class="text-3xl font-bold mt-1 text-teal-600 dark:text-teal-400">{{ $totalServices }}</p>
                 </div>
             </div>
         </div>

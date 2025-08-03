@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        {{-- Judul tab browser akan mengambil dari APP_NAME di .env --}}
         <title>{{ config('app.name', 'CITEGU') }}</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,9 +13,9 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    {{-- Pastikan body memiliki kelas untuk tema dasar --}}
+    
     <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-        <div class="min-h-screen"> {{-- Hapus bg-gray-100 dark:bg-gray-900 dari sini karena sudah di body --}}
+        <div class="min-h-screen">
             @include('layouts.navigation')
 
             @isset($header)
