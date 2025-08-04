@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; // Pastikan ini ada untuk operasi file
 
 class ServiceController extends Controller
 {
@@ -41,11 +42,16 @@ class ServiceController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'icon_class' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi gambar
             'is_active' => 'boolean',
         ]);
+        
+        // Simpan gambar jika ada
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('services', 'public');
+        }
 
         Service::create($validatedData);
-
         return redirect()->route('admin.services.index')->with('success', 'Layanan berhasil ditambahkan.');
     }
 
@@ -73,11 +79,25 @@ class ServiceController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'icon_class' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'is_active' => 'boolean',
         ]);
+        
+        // Tangani pembaruan gambar
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
+            if ($service->image) {
+                Storage::disk('public')->delete($service->image);
+            }
+            // Simpan gambar baru
+            $validatedData['image'] = $request->file('image')->store('services', 'public');
+        } else {
+            // Jika tidak ada gambar baru diunggah, pertahankan gambar lama
+            // Ini penting agar gambar tidak terhapus jika admin tidak mengunggah ulang gambar saat update
+            $validatedData['image'] = $service->image; 
+        }
 
         $service->update($validatedData);
-
         return redirect()->route('admin.services.index')->with('success', 'Layanan berhasil diperbarui.');
     }
 
@@ -89,8 +109,11 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
+        // Hapus gambar dari storage jika ada
+        if ($service->image) {
+            Storage::disk('public')->delete($service->image);
+        }
         $service->delete();
-
         return back()->with('success', 'Layanan berhasil dihapus.');
     }
 }

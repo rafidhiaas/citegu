@@ -13,6 +13,7 @@ class Service extends Model
         'name',
         'description',
         'icon_class',
-        'is_active'
+        'is_active',
+        'image'
     ];
 }

@@ -5,7 +5,7 @@
 
     <div class="page-title light-background">
         <div class="container">
-            <h1>Detail Layanan: {{ $service->name }}</h1>
+            <h1>Layanan: {{ $service->name }}</h1>
             <nav class="breadcrumbs">
                 <ol>
                     <li><a href="{{ route('home') }}">Home</a></li>
@@ -48,11 +48,18 @@
                             <li><strong>Tanggal Ditambahkan:</strong> {{ $service->created_at->format('d M Y') }}</li>
                         </ul>
                     </div>
+
+                    {{-- Bagian ini bisa Anda isi dengan daftar layanan serupa --}}
+                    @if(isset($relatedServices) && $relatedServices->isNotEmpty())
+                        <div class="services-list mt-4">
+                            <h4>Layanan Serupa</h4>
+                            @foreach ($relatedServices as $related)
+                                <a href="{{ route('services.show', $related->id) }}">{{ $related->name }}</a>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
-
             </div>
-
         </div>
-
     </section></main>
 @endsection

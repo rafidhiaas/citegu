@@ -3,7 +3,7 @@
 
     <div class="page-title light-background">
         <div class="container">
-            <h1>Detail Produk: {{ $product->name }}</h1>
+            <h1>Produk: {{ $product->name }}</h1>
             <nav class="breadcrumbs">
                 <ol>
                     <li><a href="{{ route('home') }}">Home</a></li>
@@ -27,7 +27,7 @@
 
                     <h3 class="mt-4">{{ $product->name }}</h3>
                     <p style="text-align: justify;">
-                        {{ $product->description ?? 'Belum ada deskripsi lengkap untuk produk ini.' }}
+                        {!! nl2br($product->description ?? 'Belum ada deskripsi lengkap untuk produk ini.') !!}
                     </p>
 
                     @if($product->details_link)
