@@ -54,7 +54,6 @@
                         <input type="url" name="details_link" id="edit_product_details_link" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('details_link') border-red-500 ring-red-500 @enderror" value="{{ old('details_link', $product->details_link) }}" placeholder="https://example.com/product-detail" autocomplete="off" aria-describedby="edit_product_details_link-error">
                         @error('details_link')<p id="edit_product_details_link-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
                     </div>
-
                     <div class="col-span-1 md:col-span-2 flex items-center">
                         <input type="hidden" name="is_active" value="0">
                         <input type="checkbox" name="is_active" id="edit_product_is_active" class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" value="1" {{ old('is_active', $product->is_active) ? 'checked' : '' }} aria-describedby="edit_product_is_active-error">

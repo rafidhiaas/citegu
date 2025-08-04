@@ -53,8 +53,8 @@
                                     <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">{{ Str::limit($testimonial->content, 100) }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{
-                                            $testimonial->status == 'approved' ? 'bg-emerald-600 text-white' :
-                                            ($testimonial->status == 'pending' ? 'bg-amber-400 text-gray-800' : 'bg-red-600 text-white')
+                                            $testimonial->status == 'approved' ? 'bg-emerald-600 text-white-100' :
+                                            ($testimonial->status == 'pending' ? 'bg-amber-400 text-gray-100' : 'bg-red-600 text-white')
                                         }}">
                                             {{ ucfirst($testimonial->status) }}
                                         </span>
@@ -65,27 +65,27 @@
                                         @if($testimonial->status == 'pending')
                                             <form action="{{ route('admin.testimonials.approve', $testimonial) }}" method="POST" class="inline">
                                                 @csrf
-                                                <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-white bg-emerald-600 dark:bg-emerald-500 hover:bg-emerald-700 dark:hover:bg-emerald-600 focus:outline-none focus:shadow-outline-emerald active:bg-emerald-800 dark:active:bg-emerald-700 transition duration-150 ease-in-out">Setujui</button>
+                                                <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-dark bg-emerald-600 dark:bg-emerald-500 hover:bg-emerald-400 dark:hover:bg-emerald-600 focus:outline-none focus:shadow-outline-emerald active:bg-emerald-400 dark:active:bg-emerald-400 transition duration-150 ease-in-out">Setujui</button>
                                             </form>
                                             <form action="{{ route('admin.testimonials.reject', $testimonial) }}" method="POST" class="inline">
                                                 @csrf
-                                                <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-black dark:text-gray-400 bg-amber-400 dark:bg-amber-300 hover:bg-amber-500 dark:hover:bg-amber-400 focus:outline-none focus:shadow-outline-amber active:bg-amber-400 dark:active:bg-amber-500 transition duration-150 ease-in-out">Tolak</button>
+                                                <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-dark dark:text-gray-400 bg-amber-400 dark:bg-amber-300 hover:bg-amber-500 dark:hover:bg-amber-400 focus:outline-none focus:shadow-outline-amber active:bg-amber-400 dark:active:bg-amber-500 transition duration-150 ease-in-out">Tolak</button>
                                             </form>
                                         @elseif($testimonial->status == 'approved')
                                             <form action="{{ route('admin.testimonials.reject', $testimonial) }}" method="POST" class="inline">
                                                 @csrf
-                                                <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-400 dark:text-white bg-amber-400 rounded-md hover:bg-amber-500 focus:outline-none focus:shadow-outline-amber active:bg-amber-600 transition duration-150 ease-in-out">Tolak</button>
+                                                <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-100 dark:text-white bg-amber-400 rounded-md hover:bg-amber-400 focus:outline-none focus:shadow-outline-amber active:bg-amber-800 transition duration-150 ease-in-out">Tolak</button>
                                             </form>
                                         @elseif($testimonial->status == 'rejected')
                                             <form action="{{ route('admin.testimonials.approve', $testimonial) }}" method="POST" class="inline">
                                                 @csrf
-                                                <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-white bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 rounded-md shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition duration-150 ease-in-out">Setujui</button>
+                                                <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-white-100 bg-emerald-600 hover:bg-emerald-400 active:bg-emerald-400 rounded-md shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition duration-150 ease-in-out">Setujui</button>
                                             </form>
                                         @endif
                                         <form action="{{ route('admin.testimonials.destroy', $testimonial) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus testimonial ini?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-900 dark:text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 transition duration-150 ease-in-out">Hapus</button>
+                                                <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-gray-100 dark:text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:shadow-outline-red active:bg-red-800 transition duration-150 ease-in-out">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>

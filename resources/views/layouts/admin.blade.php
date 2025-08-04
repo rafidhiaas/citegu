@@ -31,8 +31,6 @@
 
             <main class="flex-1 overflow-x-hidden overflow-y-auto">
                 <div class="py-12">
-                    {{-- DIV INI YANG DIUBAH --}}
-                    {{-- Hapus kelas max-w-7xl mx-auto sm:px-6 lg:px-8 --}}
                     <div class="px-6"> 
                         @if(session('success'))
                             <div class="p-3 mb-4 text-sm text-emerald-100 bg-emerald-600 rounded-lg dark:bg-emerald-700 dark:text-emerald-100" role="alert">
