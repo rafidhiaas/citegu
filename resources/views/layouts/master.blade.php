@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  {{-- PERBAIKAN DI SINI: Membuat judul lebih dinamis --}}
+  <!-- PERBAIKAN DI SINI: Membuat judul lebih dinamis -->
   <title>PT. CIPTA TEKNOLOGI GURITA @hasSection('title') - @yield('title') @endif</title>
   <meta name="description" content="Menyediakan solusi IT dan dapat disesuaikan untuk kebutuhan bisnis Anda.">
   <meta name="keywords" content="IT solutions, data center, networking, server, storage, immersion cooling, HPC, AI/ML, security, software development">
@@ -24,7 +24,7 @@
 
   <link href="{{ asset('landing/assets/css/main.css') }}" rel="stylesheet">
 
-  {{-- Tambahkan yield untuk gaya tambahan dari halaman spesifik --}}
+  <!-- Tambahkan yield untuk gaya tambahan dari halaman spesifik -->
   @yield('styles')
 
 </head>

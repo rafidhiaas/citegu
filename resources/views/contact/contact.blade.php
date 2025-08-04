@@ -36,14 +36,13 @@
                                 <p>Sales@citegu.id</p>
                             </div>
                         </div>
-                        {{-- Penting: Ganti URL placeholder ini dengan URL embed Google Maps yang sebenarnya --}}
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4818.37617101805!2d106.82992007582112!3d-6.230502861018168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3ef1d3fffff%3A0xe89e26d40445ac5c!2sJl.%20H.%20R.%20Rasuna%20Said%20Blok%20X.5%20No.Kav%205%207%2C%20RT.1%2FRW.2%2C%20Kuningan%2C%20Kuningan%20Tim.%2C%20Kecamatan%20Setiabudi%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2012950!5e1!3m2!1sid!2sid!4v1753298538061!5m2!1sid!2sid" frameborder="0" style="border:0; width: 100%; height: 350px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2414.4102215547423!2d106.82832506892638!3d-6.217937899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f403a6b4363b%3A0xd3757d9844afcf6e!2sPlaza%2089!5e1!3m2!1sid!2sid!4v1754302403485!5m2!1sid!2sid" frameborder="0" style="border:0; width: 100%; height: 350px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
 
                 <div class="col-lg-7">
                     <form action="{{ route('contact.submit') }}" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-                        @csrf {{-- Penting untuk Laravel Forms: Melindungi dari CSRF --}}
+                        @csrf
                         <div class="row gy-4">
 
                             <div class="col-md-6">
@@ -67,9 +66,17 @@
                             </div>
 
                             <div class="col-md-12 text-center">
-                                <div class="loading">Memuat</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Pesan Anda telah terkirim. Terima kasih!</div>
+                                {{-- TAMPILKAN PESAN SUKSES DARI LARAVEL --}}
+                                @if(session('success'))
+                                    <div class="alert alert-success mt-3" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                @if(session('error'))
+                                    <div class="alert alert-danger mt-3" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
 
                                 <button type="submit">Kirim Pesan</button>
                             </div>

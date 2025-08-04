@@ -3,13 +3,21 @@
 @section('content')
 <main class="main">
 
-    <section id="hero" class="hero section dark-background">
-        <img src="{{ asset('landing/assets/img/bg-1.jpg') }}" alt="" data-aos="fade-in" class="">
+    <style>
+        /* Mengambil gambar latar belakang secara dinamis dari database */
+        #hero-with-bg {
+            background-image: url('{{ asset('storage/' . ($backgroundPath ?? 'landing/assets/img/bg-1.jpg')) }}');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <section id="hero-with-bg" class="hero section dark-background">
         <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <h2>PT. CIPTA TEKNOLOGI GURITA</h2>
-                    <p>"Solusi IT dan dapat disesuaikan untuk kebutuhan bisnis Anda."</p>
+                    {{-- Mengambil slogan secara dinamis dari database --}}
+                    <p>{{ $slogan ?? '"Solusi IT dan dapat disesuaikan untuk kebutuhan bisnis Anda."' }}</p>
                 </div>
             </div>
         </div>
@@ -20,32 +28,37 @@
             <div class="row gy-4">
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="1000" data-purecounter-duration="1" class="purecounter"></span>
+                        {{-- Mengambil data Clients secara dinamis --}}
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $clients ?? 0 }}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Clients</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="1000" data-purecounter-duration="1" class="purecounter"></span>
+                        {{-- Mengambil data Projects secara dinamis --}}
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $projects ?? 0 }}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Projects</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="10000" data-purecounter-duration="1" class="purecounter"></span>
+                        {{-- Mengambil data Hours Of Support secara dinamis --}}
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $support_hours ?? 0 }}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Hours Of Support</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span>
+                        {{-- Mengambil data Workers secara dinamis --}}
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $workers ?? 0 }}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Workers</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-<section id="why-us" class="why-us section">
+
+    <section id="why-us" class="why-us section">
     <div class="container">
         <div class="row gy-4">
             <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000"> <div class="why-box">
@@ -181,7 +194,6 @@
             </div>
         </div>
     </section>
-    <!-- testimonial sections -->
     <section id="testimonials" class="testimonials section light-background">
         <div class="container" data-aos="fade-up" data-aos-delay="100">
             <div class="swiper init-swiper">
@@ -246,10 +258,10 @@
             </div>
         </div>
     </section>
-    <!-- kirim testimonial -->
     <div class="text-center my-5" data-aos="fade-up">
     <p><h1>Punya pengalaman luar biasa dengan kami? Bagikan kisah Anda!</p></h1>
     <a href="{{ route('testimonials.create') }}" class="btn btn-info">Kirim Testimonial Anda</a>
 </div>
 </main>
 @endsection
+sempurnakan

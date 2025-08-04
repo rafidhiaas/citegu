@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('header', 'Dashboard Admin')
+@section('header', 'Dashboard Admin Pengelolaan Website')
 
 @section('content')
     <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg border border-blue-600">
         <div class="p-6 text-gray-900 dark:text-gray-100">
 
             <h3 class="font-semibold text-xl text-blue-600 dark:text-blue-400 leading-tight mb-8 border-b pb-2 border-blue-500 dark:border-blue-700">
-                Ringkasan Admin
+                Ringkasan Website Admin
             </h3>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">

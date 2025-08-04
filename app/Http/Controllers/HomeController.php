@@ -3,19 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Testimonial; // <<<--- BARIS INI PENTING! Impor Model Testimonial
+use App\Models\Testimonial; // Import Model Testimonial
+use App\Models\Setting;     // Import Model Setting (PENTING: Pastikan ini ada)
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // Ambil testimonial yang berstatus 'approved' dari database
+        // Mengambil testimonial yang berstatus 'approved' dari database
         // dan urutkan berdasarkan tanggal terbaru
         $testimonials = Testimonial::where('status', 'approved')
-                                   ->latest() // Mengurutkan berdasarkan 'created_at' terbaru
+                                   ->latest()
                                    ->get();
 
-        // Teruskan data testimonial ke view home.blade.php
-        return view('home', compact('testimonials')); // <<<--- VARIABEL DIKIRIMKAN KE VIEW
+        // Mengambil pengaturan homepage dari tabel 'settings'
+        $backgroundPath = Setting::where('key', 'homepage_background_image')->value('value');
+        $slogan = Setting::where('key', 'homepage_slogan')->value('value');
+        $clients = Setting::where('key', 'homepage_total_clients')->value('value');
+        $projects = Setting::where('key', 'homepage_total_projects')->value('value');
+        $support_hours = Setting::where('key', 'homepage_support_hours')->value('value');
+        $workers = Setting::where('key', 'homepage_total_workers')->value('value');
+
+        // Teruskan semua data yang diperlukan ke view home.blade.php
+        return view('home', compact(
+            'testimonials',
+            'backgroundPath',
+            'slogan',
+            'clients',
+            'projects',
+            'support_hours',
+            'workers'
+        ));
     }
 }
