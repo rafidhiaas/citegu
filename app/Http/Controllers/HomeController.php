@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Testimonial; // Import Model Testimonial
-use App\Models\Setting;     // Import Model Setting (PENTING: Pastikan ini ada)
+use App\Models\Testimonial; 
+use App\Models\Setting;    
 
 class HomeController extends Controller
 {

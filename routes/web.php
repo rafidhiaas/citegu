@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialControll
 use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
-use App\Http\Controllers\Admin\SettingsController as AdminSettingsController; // <--- TAMBAHKAN INI
+use App\Http\Controllers\Admin\SettingsController as AdminSettingsController; 
 
 use App\Http\Controllers\ProfileController;
 
@@ -27,7 +27,7 @@ use App\Http\Controllers\ProfileController;
 |--------------------------------------------------------------------------
 */
 
-// --- Rute Aplikasi Kustom Anda (Publik) ---
+// --- Rute Aplikasi (publik) ---
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [PublicProductController::class, 'index'])->name('products.index');
@@ -55,7 +55,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('products', AdminProductController::class);
     Route::resource('services', AdminServiceController::class);
 
-    // Pengaturan Situs (BARU)
+    // Pengaturan 
     Route::prefix('settings')->name('settings.')->group(function () {
     Route::get('/homepage', [AdminSettingsController::class, 'index'])->name('homepage.index');
     Route::post('/homepage', [AdminSettingsController::class, 'update'])->name('homepage.update');

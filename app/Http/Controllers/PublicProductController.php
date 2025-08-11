@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product; // Pastikan ini diimpor
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Tambahkan ini jika Anda menggunakan Str::title di view
+use Illuminate\Support\Str; 
 
 class PublicProductController extends Controller
 {
@@ -23,12 +23,8 @@ class PublicProductController extends Controller
         if ($request->has('category') && $request->category != '') {
             $query->where('category', $request->category);
         }
-
-        $products = $query->latest()->get(); // Diurutkan berdasarkan tanggal pembuatan terbaru
-
-        // Ambil semua kategori unik untuk filter di halaman index (opsional, jika Anda punya filter di index)
+        $products = $query->latest()->get(); // urutan berdasarkan tanggal pembuatan
         $categories = Product::select('category')->distinct()->get();
-
         return view('products.products', compact('products', 'categories')); // Kirimkan juga categories ke view index
     }
 
@@ -42,7 +38,6 @@ class PublicProductController extends Controller
     public function show(Product $product)
     {
         // Variabel $product sudah otomatis terisi oleh Laravel karena Route Model Binding
-
         // Ambil semua kategori unik dari database untuk ditampilkan di bagian "Kategori Serupa"
         $categories = Product::select('category')->distinct()->get();
 

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Testimonial; // Import model Testimonial
-use App\Models\Partner;     // Import model Partner
-use App\Models\Product;     // Import model Product
-use App\Models\Service;     // Import model Service (PENTING: Pastikan ini ada)
+use App\Models\Testimonial; 
+use App\Models\Partner;     
+use App\Models\Product;     
+use App\Models\Service;     
 
 class DashboardController extends Controller
 {
@@ -17,9 +17,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // --- Menghitung Metrik Ringkasan ---
-        // Hanya mengambil hitungan total, tidak seluruh koleksi data,
-        // karena halaman dashboard hanya menampilkan ringkasan.
 
         // Menghitung total jumlah testimonial yang ada
         $totalTestimonials = Testimonial::count();

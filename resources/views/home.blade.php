@@ -16,47 +16,42 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <h2>PT. CIPTA TEKNOLOGI GURITA</h2>
-                    {{-- Mengambil slogan secara dinamis dari database --}}
                     <p>{{ $slogan ?? '"Solusi IT dan dapat disesuaikan untuk kebutuhan bisnis Anda."' }}</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="stats" class="stats section accent-background">
+   <!-- <section id="stats" class="stats section accent-background">
         <div class="container" data-aos="fade-up" data-aos-delay="100">
             <div class="row gy-4">
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        {{-- Mengambil data Clients secara dinamis --}}
                         <span data-purecounter-start="0" data-purecounter-end="{{ $clients ?? 0 }}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Clients</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        {{-- Mengambil data Projects secara dinamis --}}
                         <span data-purecounter-start="0" data-purecounter-end="{{ $projects ?? 0 }}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Projects</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        {{-- Mengambil data Hours Of Support secara dinamis --}}
                         <span data-purecounter-start="0" data-purecounter-end="{{ $support_hours ?? 0 }}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Hours Of Support</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        {{-- Mengambil data Workers secara dinamis --}}
                         <span data-purecounter-start="0" data-purecounter-end="{{ $workers ?? 0 }}" data-purecounter-duration="1" class="purecounter"></span>
                         <p>Workers</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section id="why-us" class="why-us section">
     <div class="container">
@@ -264,4 +259,3 @@
 </div>
 </main>
 @endsection
-sempurnakan
