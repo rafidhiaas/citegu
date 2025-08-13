@@ -43,7 +43,7 @@
           <p>Jl. H.R Rasuna Said Kav. X-7 No. 6,Karet Kuningan, Setia Budi, Jakarta 12940</p>
           <p>Indonesia ID</p>
           <p class="mt-4"><strong>Phone:</strong> 
-          <span>+62 7777 1651 90</span></p>
+          <span>+62 877-7716-5190</span></p>
           <p><strong>Email:</strong> 
           <span>sales@citegu.id</span></p>
         </div>

@@ -26,7 +26,7 @@
                             <i class="bi bi-telephone flex-shrink-0"></i>
                             <div>
                                 <h3>Telepon Kami</h3>
-                                <p>+62 7777 1651 90</p>
+                                <p>+62 877-7716-5190</p>
                             </div>
                         </div>
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">

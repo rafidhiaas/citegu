@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Product; // Pastikan ini diimpor
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; 
+use Illuminate\Support\Facades\DB; // Import DB Facade untuk query kategori
 
 class PublicProductController extends Controller
 {
     /**
      * Menampilkan daftar produk dan solusi di halaman publik.
      *
-     * @param  \Illuminate\Http\Request  $request // Tambahkan Request jika Anda akan menggunakan query parameter untuk filter
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function index(Request $request) // Menerima Request untuk filter kategori
+    public function index(Request $request)
     {
         // Mengambil semua produk yang aktif
         $query = Product::where('is_active', true);
@@ -23,9 +23,15 @@ class PublicProductController extends Controller
         if ($request->has('category') && $request->category != '') {
             $query->where('category', $request->category);
         }
-        $products = $query->latest()->get(); // urutan berdasarkan tanggal pembuatan
+
+        // Ambil produk dengan pengurutan terbaru
+        $products = $query->latest()->get();
+
+        // Mengambil semua kategori unik dari produk yang aktif untuk filter
         $categories = Product::select('category')->distinct()->get();
-        return view('products.products', compact('products', 'categories')); // Kirimkan juga categories ke view index
+
+        // Kirimkan kedua variabel ke view
+        return view('products.products', compact('products', 'categories'));
     }
 
     /**

@@ -14,14 +14,14 @@
 
                 <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
                     <li data-filter="*" class="filter-active">All</li>
-                    @if(!empty($categories))
-                        @foreach($categories as $category)
-                            @php
-                                $categoryName = str_replace('filter-', '', Str::title(str_replace('-', ' ', $category->category)));
-                            @endphp
-                            <li data-filter=".{{ $category->category }}">{{ $categoryName }}</li>
-                        @endforeach
-                    @endif
+                    @forelse($categories as $category)
+                        @php
+                            $categoryName = str_replace('filter-', '', Str::title(str_replace('-', ' ', $category->category)));
+                        @endphp
+                        <li data-filter=".{{ $category->category }}">{{ $categoryName }}</li>
+                    @empty
+                        <!-- Jika tidak ada kategori yang tersedia -->
+                    @endforelse
                 </ul>
 
                 <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
