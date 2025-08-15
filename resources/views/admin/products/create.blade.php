@@ -41,8 +41,7 @@
                         <select name="category" id="product_category" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('category') border-red-500 ring-red-500 @enderror" required aria-describedby="product_category-error">
                             <option value="">Pilih Kategori</option>
                             <option value="filter-hardware" {{ old('category') == 'filter-hardware' ? 'selected' : '' }}>Data Center Hardware ICT</option>
-                            <option value="filter-hardware" {{ old('category') == 'filter-hardware' ? 'selected' : '' }}>Data Center Hardware Facility</option>
-                            <option value="filter-software" {{ old('category') == 'filter-software' ? 'selected' : '' }}>Data Center Software ICT</option>
+                            <option value="filter-software" {{ old('category') == 'filter-software' ? 'selected' : '' }}>Data Center Software </option>
                             <option value="filter-design" {{ old('category') == 'filter-design' ? 'selected' : '' }}>Design Data Center</option>
                             <option value="filter-apps" {{ old('category') == 'filter-apps' ? 'selected' : '' }}>Apps / Software</option>
                             <option value="filter-solutions" {{ old('category') == 'filter-solutions' ? 'selected' : '' }}>Solutions</option>
