@@ -23,15 +23,18 @@
                         <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
                             <thead class="bg-gray-200 dark:bg-gray-700">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">ID</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Nama Produk</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Gambar</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Kategori</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Deskripsi</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Link Detail</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Status Aktif</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Tanggal Dibuat</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-blue-300 uppercase tracking-wider">Aksi</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:!text-white uppercase tracking-wider">ID</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:!text-white uppercase tracking-wider">Nama Produk</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:!text-white uppercase tracking-wider">Gambar</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:!text-white uppercase tracking-wider">Kategori</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:!text-white uppercase tracking-wider">Deskripsi</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:!text-white uppercase tracking-wider">Link Detail</th>
+                                    {{-- BARU: Kolom untuk File Spesifikasi --}}
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:!text-white uppercase tracking-wider">File Spesifikasi</th>
+                                    {{-- END BARU --}}
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:!text-white uppercase tracking-wider">Status Aktif</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:!text-white uppercase tracking-wider">Tanggal Dibuat</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:!text-white uppercase tracking-wider">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
@@ -57,6 +60,17 @@
                                                 <span class="text-gray-500">-</span>
                                             @endif
                                         </td>
+                                        {{-- BARU: Kolom untuk File Spesifikasi --}}
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                                            @if($product->file_spesifikasi)
+                                                <a href="{{ asset('storage/' . $product->file_spesifikasi) }}" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500">
+                                                    Lihat File
+                                                </a>
+                                            @else
+                                                <span class="text-gray-500">-</span>
+                                            @endif
+                                        </td>
+                                        {{-- END BARU --}}
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $product->is_active ? 'bg-emerald-600 text-white' : 'bg-red-600 text-white' }}">
                                                 {{ $product->is_active ? 'Aktif' : 'Non-aktif' }}

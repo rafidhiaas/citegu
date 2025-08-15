@@ -29,14 +29,22 @@
                         @error('image')<p id="product_image-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
                     </div>
 
+                    <!-- BARU: Field untuk File Spesifikasi -->
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="file_spesifikasi" class="block text-sm font-medium text-gray-700 dark:text-gray-100">File Spesifikasi (PDF/DOCX)</label>
+                        <input type="file" name="file_spesifikasi" id="file_spesifikasi" class="mt-1 block w-full text-gray-900 bg-white border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('file_spesifikasi') border-red-500 ring-red-500 @enderror" aria-describedby="file_spesifikasi_error">
+                        @error('file_spesifikasi')<p id="file_spesifikasi_error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror
+                    </div>
+
                     <div class="col-span-1 md:col-span-2">
                         <label for="product_category" class="block text-sm font-medium text-gray-700 dark:text-gray-100">Kategori Produk <span class="text-red-500">*</span></label>
                         <select name="category" id="product_category" class="mt-1 block w-full rounded-md shadow-sm bg-white border-gray-300 text-gray-900 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 @error('category') border-red-500 ring-red-500 @enderror" required aria-describedby="product_category-error">
                             <option value="">Pilih Kategori</option>
+                            <option value="filter-hardware" {{ old('category') == 'filter-hardware' ? 'selected' : '' }}>Data Center Hardware ICT</option>
                             <option value="filter-hardware" {{ old('category') == 'filter-hardware' ? 'selected' : '' }}>Data Center Hardware Facility</option>
-                            <option value="filter-software" {{ old('category') == 'filter-software' ? 'selected' : '' }}>Data Center Software Facility</option>
+                            <option value="filter-software" {{ old('category') == 'filter-software' ? 'selected' : '' }}>Data Center Software ICT</option>
                             <option value="filter-design" {{ old('category') == 'filter-design' ? 'selected' : '' }}>Design Data Center</option>
-                            <option value="filter-apps" {{ old('category') == 'filter-apps' ? 'selected' : '' }}>Apps</option>
+                            <option value="filter-apps" {{ old('category') == 'filter-apps' ? 'selected' : '' }}>Apps / Software</option>
                             <option value="filter-solutions" {{ old('category') == 'filter-solutions' ? 'selected' : '' }}>Solutions</option>
                         </select>
                         @error('category')<p id="product_category-error" class="mt-2 text-sm text-red-500">{{ $message }}</p>@enderror

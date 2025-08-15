@@ -53,7 +53,9 @@ class ProductController extends Controller
                 'name' => 'required|string|max:255',
                 'description' => 'nullable|string',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi file gambar
-                'category' => 'required|string|max:255', // Pastikan kategori sesuai dengan yang Anda harapkan
+                // BARU: Validasi file spesifikasi
+                'file_spesifikasi' => 'nullable|mimes:pdf,doc,docx|max:20480', // Maksimal 5MB
+                'category' => 'required|string|max:255',
                 'details_link' => 'nullable|url|max:255',
                 'is_active' => 'nullable|boolean', // 'nullable' karena checkbox tidak mengirim nilai jika tidak dicentang
             ]);
@@ -65,12 +67,20 @@ class ProductController extends Controller
                 // Pastikan Anda sudah menjalankan 'php artisan storage:link'
                 $imagePath = $request->file('image')->store('products', 'public');
             }
+            
+            // BARU: Simpan file spesifikasi
+            $spesifikasiPath = null;
+            if ($request->hasFile('file_spesifikasi')) {
+                $spesifikasiPath = $request->file('file_spesifikasi')->store('spesifikasi', 'public');
+            }
 
             // Buat produk baru di database
             Product::create([
                 'name' => $validatedData['name'],
                 'description' => $validatedData['description'],
-                'image' => $imagePath, // Simpan path gambar
+                'image' => $imagePath,
+                // BARU: Simpan path file spesifikasi
+                'file_spesifikasi' => $spesifikasiPath,
                 'category' => $validatedData['category'],
                 'details_link' => $validatedData['details_link'],
                 // Pastikan nilai boolean: jika checkbox dicentang, akan 'true', jika tidak, 'false'
@@ -124,11 +134,12 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         try {
-            // Validasi data yang masuk
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'description' => 'nullable|string',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi file gambar
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                // BARU: Validasi file spesifikasi
+                'file_spesifikasi' => 'nullable|mimes:pdf,doc,docx|max:20480',
                 'category' => 'required|string|max:255',
                 'details_link' => 'nullable|url|max:255',
                 'is_active' => 'nullable|boolean',
@@ -136,30 +147,32 @@ class ProductController extends Controller
 
             // Tangani pembaruan gambar jika ada yang baru diunggah
             if ($request->hasFile('image')) {
-                // Hapus gambar lama jika ada
                 if ($product->image) {
                     Storage::disk('public')->delete($product->image);
                 }
-                // Simpan gambar baru
                 $validatedData['image'] = $request->file('image')->store('products', 'public');
             } else {
-                // Jika tidak ada gambar baru, pertahankan gambar lama
                 $validatedData['image'] = $product->image;
             }
 
-            // Perbarui status is_active secara eksplisit
+            // BARU: Tangani pembaruan file spesifikasi
+            if ($request->hasFile('file_spesifikasi')) {
+                if ($product->file_spesifikasi) {
+                    Storage::disk('public')->delete($product->file_spesifikasi);
+                }
+                $validatedData['file_spesifikasi'] = $request->file('file_spesifikasi')->store('spesifikasi', 'public');
+            } else {
+                $validatedData['file_spesifikasi'] = $product->file_spesifikasi;
+            }
+
             $validatedData['is_active'] = $request->has('is_active') ? true : false;
 
-            // Perbarui data produk di database
             $product->update($validatedData);
 
-            // Redirect kembali ke halaman dashboard dengan pesan sukses
             return redirect()->route('dashboard')->with('success', 'Produk berhasil diperbarui!');
 
         } catch (Throwable $e) {
-            // Tangkap exception dan log untuk debugging
             \Log::error('Gagal memperbarui produk: ' . $e->getMessage());
-            // Redirect kembali dengan pesan error
             return redirect()->back()->withInput()->with('error', 'Gagal memperbarui produk. Silakan coba lagi. Error: ' . $e->getMessage());
         }
     }
@@ -173,21 +186,20 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         try {
-            // Hapus gambar terkait jika ada
             if ($product->image) {
                 Storage::disk('public')->delete($product->image);
             }
+            // BARU: Hapus file spesifikasi terkait
+            if ($product->file_spesifikasi) {
+                Storage::disk('public')->delete($product->file_spesifikasi);
+            }
 
-            // Hapus produk dari database
             $product->delete();
 
-            // Redirect kembali ke halaman dashboard dengan pesan sukses
             return redirect()->route('dashboard')->with('success', 'Produk berhasil dihapus!');
 
         } catch (Throwable $e) {
-            // Tangkap exception dan log untuk debugging
             \Log::error('Gagal menghapus produk: ' . $e->getMessage());
-            // Redirect kembali dengan pesan error
             return redirect()->back()->with('error', 'Gagal menghapus produk. Silakan coba lagi. Error: ' . $e->getMessage());
         }
     }

@@ -13,7 +13,8 @@ class Product extends Model
         'name',
         'description',
         'image',
-        'category', // Atau 'category_id' jika pakai foreign key
+        'file_spesifikasi',
+        'category',
         'details_link',
         'is_active',
     ];

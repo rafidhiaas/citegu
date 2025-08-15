@@ -30,10 +30,18 @@
                         {!! nl2br($product->description ?? 'Belum ada deskripsi lengkap untuk produk ini.') !!}
                     </p>
 
-                    @if($product->details_link)
+                    <!-- BARU: Tombol Unduh File Spesifikasi -->
+                    @if($product->file_spesifikasi)
                         <div class="mt-4">
-                            <a href="{{ $product->details_link }}" target="_blank" class="btn btn-primary">Lihat Detail Lebih Lanjut</a>
+                            <a href="{{ asset('storage/' . $product->file_spesifikasi) }}" target="_blank" class="btn btn-primary">Review File Specification</a>
                         </div>
+                    @else
+                        <!-- Tautan ini hanya akan ditampilkan jika tidak ada file spesifikasi -->
+                        @if($product->details_link)
+                            <div class="mt-4">
+                                <a href="{{ $product->details_link }}" target="_blank" class="btn btn-secondary">Lihat Detail Lebih Lanjut</a>
+                            </div>
+                        @endif
                     @endif
                 </div>
 
@@ -41,11 +49,12 @@
                     <div class="product-info-box p-4 bg-light rounded shadow-sm">
                         <h4 class="mb-3">Informasi Produk</h4>
                         <ul class="list-unstyled">
-                            <li><strong>Kategori:</strong> {{ str_replace('filter-', '', Str::title(str_replace('-', ' ', $product->category))) }}</li>
+                            <li><strong>Kategori:</strong> {{ str_replace('filter-', '', ucwords(str_replace('-', ' ', $product->category))) }}</li>
                             <li><strong>Status:</strong> {{ $product->is_active ? 'Aktif' : 'Non-aktif' }}</li>
                             <li><strong>Tanggal Ditambahkan:</strong> {{ $product->created_at->format('d M Y') }}</li>
-                            @if($product->website)
-                                <li><strong>Website Resmi:</strong> <a href="{{ $product->website }}" target="_blank">{{ Str::limit($product->website, 30) }}</a></li>
+                            <!-- Tautan Link Detail Asli tetap di sini -->
+                            @if($product->details_link)
+                                <li><strong>Link Detail:</strong> <a href="{{ $product->details_link }}" target="_blank">{{ Str::limit($product->details_link, 30) }}</a></li>
                             @endif
                         </ul>
                     </div>
@@ -56,7 +65,7 @@
                             @foreach ($categories as $category)
                                 <a href="{{ route('products.index', ['category' => $category->category]) }}"
                                    class="{{ $product->category === $category->category ? 'active' : '' }}">
-                                   {{ str_replace('filter-', '', Str::title(str_replace('-', ' ', $category->category))) }}
+                                   {{ str_replace('filter-', '', ucwords(str_replace('-', ' ', $category->category))) }}
                                 </a>
                             @endforeach
                         @endif
@@ -67,5 +76,6 @@
 
         </div>
 
-    </section></main>
+    </section>
+</main>
 @endsection
