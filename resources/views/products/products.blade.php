@@ -6,7 +6,7 @@
 
         <div class="container section-title" data-aos="fade-up" style="padding-top: 100px;">
             <h2>Products and Solutions</h2>
-            <p>Jelajahi berbagai produk dan solusi inovatif yang kami tawarkan untuk memenuhi kebutuhan Anda.</p>
+            <p>Explore the range of innovative products and solutions we offer to meet your needs.</p>
         </div>
 
         <div class="container">
@@ -45,7 +45,7 @@
                         </div>
                     @empty
                         <div class="col-12 text-center">
-                            <p>Belum ada produk atau solusi yang tersedia saat ini.</p>
+                            <p>There are no products or solutions available at this time.</p>
                         </div>
                     @endforelse
 

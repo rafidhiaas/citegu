@@ -16,7 +16,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <h2>PT. CIPTA TEKNOLOGI GURITA</h2>
-                    <p>{{ $slogan ?? '"Solusi IT dan dapat disesuaikan untuk kebutuhan bisnis Anda."' }}</p>
+                    <p>{{ $slogan ?? '"IT solutions and can be customized to your business needs."' }}</p>
                 </div>
             </div>
         </div>
@@ -68,12 +68,12 @@
                 </div>
             </div>
             <div class="col-lg-12 d-flex align-items-stretch">
-                <div class="row gy-4 justify-content-center" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000"> {{-- Bagian Solusi End-to-End yang diubah menjadi tampilan kartu --}}
+                <div class="row gy-4 justify-content-center" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000"> 
                     <div class="col-lg-3 col-md-6">
                         <div class="icon-box solution-card-style d-flex flex-column justify-content-top align-items-center text-center" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800"> <i class="bi bi-boxes"></i>
                             <h4>Solusi End-to-End</h4>
                             <p>
-                                Kami menyediakan solusi IT lengkap dari hulu ke hilir. Mulai dari perencanaan, implementasi, hingga pemeliharaan, kami adalah mitra terpercaya Anda.
+                                We provide complete IT solutions from end-to-end. From planning and implementation to maintenance, we are your trusted partner.
                             </p>
                         </div>
                     </div>
@@ -81,45 +81,45 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="icon-box solution-card-style d-flex flex-column justify-content-top align-items-center text-center" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
                             <i class="bi bi-clipboard-data"></i>
-                            <h4>Solusi Infrastruktur Lengkap</h4>
+                            <h4>Complete Infrastructure Solutions</h4>
                             <p>
-                                Dapatkan satu sumber terpadu untuk Networking, Server (X64/Arm64), Storage, Sistem Operasi, hingga Data Center modern.
+                                Get a single, integrated source for Networking, Servers (X64/Arm64), Storage, Operating Systems, and modern Data Centers.
                             </p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="icon-box solution-card-style d-flex flex-column justify-content-top align-items-center text-center" data-aos="fade-up" data-aos-delay="500" data-aos-duration="800">
                             <i class="bi bi-gem"></i>
-                            <h4>Inovasi & Performa Tinggi</h4>
+                            <h4>Innovation and High Performance</h4>
                             <p>
-                                Siap menghadapi beban kerja intensif dengan Immersion Cooling, Secure VDI, High Performance Storage, HPC Server, ML/AI, dan Cloud Computing.
+                                Ready for intensive workloads with Immersion Cooling, Secure VDI, High Performance Storage, HPC Server, ML/AI, and Cloud Computing.
                             </p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="icon-box solution-card-style d-flex flex-column justify-content-top align-items-center text-center" data-aos="fade-up" data-aos-delay="600" data-aos-duration="800">
                             <i class="bi bi-inboxes"></i>
-                            <h4>Pengembangan Solusi Digital</h4>
+                            <h4>Digital Solution Development</h4>
                             <p>
-                                Ahli dalam Software Development, ML/AI Development, dan BigData Development Solution untuk mendorong pertumbuhan bisnis Anda.
+                               Experts in Software Development, ML/AI Development, and BigData Development Solutions to drive your business growth.
                             </p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="icon-box solution-card-style d-flex flex-column justify-content-top align-items-center text-center" data-aos="fade-up" data-aos-delay="700" data-aos-duration="800">
                             <i class="bi bi-file-lock"></i>
-                            <h4>Keamanan & Keandalan Data</h4>
+                            <h4>Data Security and Reliability</h4>
                             <p>
-                                Solusi Keamanan, CCTV & Analytics, dan Backup System memastikan data Anda aman, terlindungi, dan selalu tersedia.
+                                Security Solutions, CCTV & Analytics, and Backup Systems ensure your data is safe, secure, and always available.
                             </p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="icon-box solution-card-style d-flex flex-column justify-content-top align-items-center text-center" data-aos="fade-up" data-aos-delay="800" data-aos-duration="800">
                             <i class="bi bi-database"></i>
-                            <h4>Manajemen Data & Analitik</h4>
+                            <h4>Data Management & Analytics</h4>
                             <p>
-                                Kelola, analisis, dan manfaatkan data Anda secara efektif dengan database management, data warehousing, dan business intelligence.
+                                Manage, analyze, and leverage your data effectively with database management, data warehousing, and business intelligence.
                             </p>
                         </div>
                     </div>
@@ -180,7 +180,6 @@
                         <li>
                             <i class="bi bi-person-lines-fill"></i>
                             <div>
-                                {{-- Mengarahkan ke halaman contact.blade.php yang baru --}}
                                 <h5><a href="{{ route('contact.index') }}" class="contact-button">Contact Us</a></h5>
                             </div>
                         </li>
@@ -208,8 +207,6 @@
                     }
                 </script>
                 <div class="swiper-wrapper">
-
-                    {{-- PASTIKAN HANYA ADA BLOK @forelse ini di dalam swiper-wrapper --}}
                     @forelse($testimonials as $testimonial)
                     <div class="swiper-slide">
                         <div class="testimonial-item">
@@ -243,7 +240,7 @@
                     @empty
                     <div class="swiper-slide">
                         <div class="testimonial-item text-center">
-                            <p>Belum ada testimonial yang disetujui untuk ditampilkan saat ini.</p>
+                            <p>There are no approved testimonials to display at this time.</p>
                         </div>
                     </div>
                     @endforelse
@@ -254,8 +251,8 @@
         </div>
     </section>
     <div class="text-center my-5" data-aos="fade-up">
-    <p><h1>Punya pengalaman luar biasa dengan kami? Bagikan kisah Anda!</p></h1>
-    <a href="{{ route('testimonials.create') }}" class="btn btn-info">Kirim Testimonial Anda</a>
+    <p><h1>Had an amazing experience with us? Share your story!</p></h1>
+    <a href="{{ route('testimonials.create') }}" class="btn btn-info">Submit Your Testimonial</a>
 </div>
 </main>
 @endsection

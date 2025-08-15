@@ -1,15 +1,16 @@
-@extends('layouts.master') <!-- Sesuaikan jika Anda punya layout admin yang berbeda -->
+@extends('layouts.master')
 
 @section('content')
-<main class="main max-h-screen overflow-y-auto"> {{-- Tambahkan kelas ini untuk scroll --}}
+<main class="main max-h-screen overflow-y-auto"> 
     <section id="clients" class="clients section light-background">
         <div class="container" data-aos="fade-up">
             <h2 class="section-title">Our Partners</h2>
+            <h5 class="text-center">We are proud to partner with leading companies to bring you the best technology solutions.</h5>
         </div>
         <div class="container" data-aos="fade-up">
             <div class="row gy-4 justify-content-center">
                 @forelse($partners as $partner)
-                    @if($partner->is_active) {{-- Hanya tampilkan partner yang aktif --}}
+                    @if($partner->is_active) 
                         <div class="col-xl-2 col-md-3 col-6 client-logo">
                             <a href="{{ $partner->website }}" target="_blank">
                                 @if($partner->logo)
@@ -24,7 +25,7 @@
                     @endif
                 @empty
                     <div class="col-12 text-center">
-                        <p>Belum ada partner yang aktif untuk ditampilkan saat ini.</p>
+                        <p>There are no active partners to display at this time.</p>
                     </div>
                 @endforelse
             </div>

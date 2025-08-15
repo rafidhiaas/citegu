@@ -6,7 +6,7 @@
     <section id="contact" class="contact section">
         <div class="container section-title" data-aos="fade-up" style="padding-top: 100px;" >
             <h2>Contact</h2>
-            <h3>"Jangan ragu untuk menghubungi kami! Tim ahli kami siap membantu Anda menemukan solusi TIK terbaik untuk kebutuhan bisnis Anda."</h3>
+            <h3>"Don't hesitate to contact us! Our team of experts is ready to help you find the best ICT solution for your business needs."</h3>
         </div>
         <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -17,7 +17,7 @@
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
-                                <h3>Alamat</h3>
+                                <h3>Address</h3>
                                 <p>Gedung Plaza 89, Lantai 12, Unit 1207,</p>
                                 <p>Jl. H.R Rasuna Said Kav. X-7 No. 6,Karet Kuningan, SetiaBudi, Jakarta 12940 – Indonesia </p>
                             </div>
@@ -25,14 +25,14 @@
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                             <i class="bi bi-telephone flex-shrink-0"></i>
                             <div>
-                                <h3>Telepon Kami</h3>
+                                <h3>Call Us</h3>
                                 <p>+62 877-7716-5190</p>
                             </div>
                         </div>
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
-                                <h3>Email Kami</h3>
+                                <h3>Email Us</h3>
                                 <p>Sales@citegu.id</p>
                             </div>
                         </div>
@@ -46,27 +46,27 @@
                         <div class="row gy-4">
 
                             <div class="col-md-6">
-                                <label for="name-field" class="pb-2">Nama Anda</label>
+                                <label for="name-field" class="pb-2">Your name</label>
                                 <input type="text" name="name" id="name-field" class="form-control" required>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="email-field" class="pb-2">Email Anda</label>
+                                <label for="email-field" class="pb-2">Your Email</label>
                                 <input type="email" class="form-control" name="email" id="email-field" required>
                             </div>
 
                             <div class="col-md-12">
-                                <label for="subject-field" class="pb-2">Subjek</label>
+                                <label for="subject-field" class="pb-2">Subject</label>
                                 <input type="text" class="form-control" name="subject" id="subject-field" required>
                             </div>
 
                             <div class="col-md-12">
-                                <label for="message-field" class="pb-2">Pesan</label>
+                                <label for="message-field" class="pb-2">Message</label>
                                 <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
                             </div>
 
                             <div class="col-md-12 text-center">
-                                {{-- TAMPILKAN PESAN SUKSES DARI LARAVEL --}}
+                             
                                 @if(session('success'))
                                     <div class="alert alert-success mt-3" role="alert">
                                         {{ session('success') }}
@@ -78,7 +78,7 @@
                                     </div>
                                 @endif
 
-                                <button type="submit">Kirim Pesan</button>
+                                <button type="submit">Send message</button>
                             </div>
 
                         </div>

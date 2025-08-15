@@ -6,7 +6,7 @@
           <a href="index.html" class="logo d-flex align-items-center">
             <span class="sitename">PT Cipta Teknologi Gurita</span>
           </a>
-          <p>"Solusi IT dan dapat disesuaikan untuk kebutuhan bisnis Anda."</p>
+          <p>"IT solutions and can be customized to your business needs."</p>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>
